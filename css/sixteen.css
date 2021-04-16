@@ -4,3 +4,55 @@
     height: 588px;
     background: #212121
 }
+
+.sixteen-navigation {
+    width: 80px;
+    height: 100%;
+}
+
+/* Navigation Buttons*/
+.navigation-btns {
+    width: 180px;
+    height: 190px;
+    background: rgb(66, 66, 66);
+}
+
+.navigation-btns:hover {
+    cursor: pointer;
+}
+
+#sixteen-navigation-home {
+    margin-bottom: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#sixteen-navigation-home.active {
+    width: 175px;
+    border-right: 5px solid #0da9ff;
+}
+
+#sixteen-navigation-settings {
+    margin-top: 9px;
+}
+
+.home-icon-div {
+    width: 90px;
+    height: 90px;
+    background: transparent url("../images/icon-home.svg") 0% 0% no-repeat
+      padding-box;
+    opacity: 1;
+    background-size: 90px;
+}
+
+
+#sixteen-navigation-aim.active {
+    width: 175px;
+    border-right: 5px solid #0da9ff;
+}
+.home-icon-div.active {
+    margin-left: 5px;
+ }
+
