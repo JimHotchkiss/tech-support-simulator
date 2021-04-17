@@ -37,3 +37,9 @@
     text-align: center;
     cursor: pointer;
 }
+
+.clear-gui {
+    margin-top: 32px;
+    text-align: center;
+    cursor: pointer;
+}

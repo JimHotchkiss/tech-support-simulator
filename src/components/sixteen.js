@@ -55,8 +55,26 @@ class Sixteen {
     settings.setAttribute("id", "sixteen-navigation-settings")
     navigation.appendChild(settings)
     Sixteen.insertHomeIconDiv()
-    Sixteen.sixteenNavHomeBtnEventListener()
-    Sixteen.sixteenNavAimBtnEventListener()
+    Sixteen.insertAimIconDiv()
+    Sixteen.insertSettingsIconDiv()
+    Sixteen.navigationBtnEventListener()
+  }
+
+  static insertSettingsIconDiv() {
+    const settingsDiv = document.getElementById("sixteen-navigation-settings")
+    const settingsIconDiv = document.createElement("div")
+    settingsIconDiv.setAttribute("class", "settings-icon-div")
+    settingsIconDiv.setAttribute("id", "sixteen-settings-icon")
+    settingsDiv.appendChild(settingsIconDiv)
+  }
+
+  static insertAimIconDiv() {
+    const aimDiv = document.getElementById("sixteen-navigation-aim")
+    const aimIconDiv = document.createElement("div")
+    aimIconDiv.setAttribute("class", "aim-icon-div")
+    aimIconDiv.setAttribute("id", "sixteen-aim-icon")
+    aimIconDiv.innerText = "AIM"
+    aimDiv.appendChild(aimIconDiv)
   }
 
   static insertHomeIconDiv() {
@@ -67,34 +85,26 @@ class Sixteen {
     homeDiv.appendChild(homeIconDiv)
   }
 
-  static sixteenNavAimBtnEventListener() {
-    const sixteenNavigationAim = document.getElementById(
-      "sixteen-navigation-aim"
-    )
-    sixteenNavigationAim.addEventListener("click", () => {
-      // Sixteen.clearBtns()
-      sixteenNavigationAim.classList.toggle("active")
-    })
+  static navigationBtnEventListener() {
+    const btnDivs = document.getElementsByClassName("navigation-btns")
+    for (let item of btnDivs) {
+      item.addEventListener("click", () => {
+        Sixteen.resetBtns()
+        Sixteen.activateBtn(item)
+      })
+    }
   }
 
-  static sixteenNavHomeBtnEventListener() {
-    const sixteenNavigationHome = document.getElementById(
-      "sixteen-navigation-home"
-    )
-    const homeIconDiv = document.getElementById("sixteen-home-icon")
-    sixteenNavigationHome.addEventListener("click", () => {
-      // Sixteen.clearBtns()
-      sixteenNavigationHome.classList.toggle("active")
-      homeIconDiv.classList.toggle("active")
-    })
+  static activateBtn(item) {
+    item.children.item(0).classList.toggle("active")
+    item.classList.toggle("active")
   }
 
-  // static clearBtns() {
-  //   const navigationBtns = document.getElementsByClassName("navigation-btns")
-  //   for (let item of navigationBtns) {
-  //     if (item.classList.contains("active")) {
-  //       item.classList.remove("active")
-  //     }
-  //   }
-  // }
+  static resetBtns() {
+    const btnDivs = document.getElementsByClassName("navigation-btns")
+    for (let item of btnDivs) {
+      item.children.item(0).classList.remove("active")
+      item.classList.remove("active")
+    }
+  }
 }

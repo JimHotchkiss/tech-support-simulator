@@ -30,6 +30,28 @@ class Sidebar {
     mainbody.appendChild(guiSimulatorContainer)
     root.appendChild(mainbody)
 
+    // Clear Btn -
+    const clearGui = document.createElement("div")
+    clearGui.setAttribute("class", "clear-gui")
+    clearGui.setAttribute("id", "clear-gui")
+    clearGui.innerText = "Clear Gui"
+    navigation.appendChild(clearGui)
+
+    Sidebar.clearGuiEventListener()
     Sixteen.sixteenEventListener()
+  }
+
+  static clearGuiEventListener() {
+    const clearGui = document.getElementById("clear-gui")
+    clearGui.addEventListener("click", () => {
+      Sidebar.clearGuiSimulatorContainer()
+    })
+  }
+
+  static clearGuiSimulatorContainer() {
+    const guiSimulatorContainer = document.getElementById(
+      "gui-simulator-container"
+    )
+    guiSimulatorContainer.innerHTML = ""
   }
 }
