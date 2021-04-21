@@ -197,16 +197,28 @@ class Sixteen {
   }
 
   // Need to define a variable to hold the index
+
   static plusSlides(n) {
     Sixteen.showSlides(n)
   }
 
   static showSlides(n) {
-    console.log(n)
+    const specailtyNameDivs = document.getElementsByClassName("specialty-name")
+    for (let div of specailtyNameDivs) {
+      if (div.style.display === "block") {
+        const nextElement = div.nextSibling
+        div.style.display = "none"
+        if (nextElement != null) {
+          console.log("sup")
+          console.log(nextElement.style.display)
+          nextElement.style.display = "block"
+        }
+      }
+    }
   }
 
   // End Carousel Functionality
-
+  d
   static loadRightArrow() {
     const arrowSpecialtyContainer = document.getElementById(
       "arrow-specialty-container"
