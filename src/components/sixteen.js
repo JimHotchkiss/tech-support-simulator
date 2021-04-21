@@ -3,6 +3,22 @@ class Sixteen {
     return document.getElementById("gui-simulator-container")
   }
 
+  static specialties() {
+    return [
+      "STANDARD",
+      "ARTHROSCOPY",
+      "CYSTOSCOPY",
+      "HYSTEROSCOPY",
+      "LAPAROSCOPY",
+      "LASER",
+      "MICROSCOPE",
+    ]
+  }
+
+  static dots() {
+    return [1, 2, 3, 4, 5, 6, 7]
+  }
+
   static sixteenEventListener() {
     const sixteen = document.getElementById("sixteen")
     sixteen.addEventListener("click", () => {
@@ -24,6 +40,193 @@ class Sixteen {
     gui.setAttribute("id", "sixteen-gui")
     Sixteen.guiSimulatorContainer().appendChild(gui)
     Sixteen.loadSixteenNavigation()
+    Sixteen.loadSixteenHomescreen()
+  }
+
+  static loadSixteenHomescreen() {
+    const sixteenGui = document.getElementById("sixteen-gui")
+    const sixteenHomeScreenContainer = document.createElement("div")
+    sixteenHomeScreenContainer.setAttribute("class", "sixteen-home-container")
+    sixteenHomeScreenContainer.setAttribute("id", "sixteen-home-container")
+    sixteenGui.appendChild(sixteenHomeScreenContainer)
+    Sixteen.loadSpecialtyContainer()
+    Sixteen.loadCcuFunctionsContainer()
+    Sixteen.loadAutoLightDefogContainer()
+  }
+
+  static loadAutoLightDefogContainer() {
+    const sixteenHomeScreenContainer = document.getElementById(
+      "sixteen-home-container"
+    )
+    const autoLightDefogContainer = document.createElement("div")
+    autoLightDefogContainer.setAttribute("class", "home-containers")
+    autoLightDefogContainer.setAttribute("id", "autolight-defog-container")
+    sixteenHomeScreenContainer.appendChild(autoLightDefogContainer)
+  }
+
+  static loadCcuFunctionsContainer() {
+    const sixteenHomeScreenContainer = document.getElementById(
+      "sixteen-home-container"
+    )
+    const ccuFunctionsContainer = document.createElement("div")
+    ccuFunctionsContainer.setAttribute("class", "home-containers")
+    ccuFunctionsContainer.setAttribute("id", "ccu-functions-container")
+    sixteenHomeScreenContainer.appendChild(ccuFunctionsContainer)
+  }
+  static loadSpecialtyContainer() {
+    const sixteenHomeScreenContainer = document.getElementById(
+      "sixteen-home-container"
+    )
+    const specialtyContainer = document.createElement("div")
+    specialtyContainer.setAttribute("class", "home-containers")
+    specialtyContainer.setAttribute("id", "specialty-container")
+    sixteenHomeScreenContainer.appendChild(specialtyContainer)
+    Sixteen.loadCarouselHTML()
+  }
+
+  static loadCarouselHTML() {
+    Sixteen.loadSpecialtyWindowContainer()
+    Sixteen.loadLeftArrow()
+    Sixteen.loadSpecialtyWindow()
+    Sixteen.loadRightArrow()
+  }
+
+  static loadSpecialtyWindowContainer() {
+    const specialtyContainer = document.getElementById("specialty-container")
+    const specialtyWindowContainer = document.createElement("div")
+    specialtyWindowContainer.setAttribute("class", "specialty-window-container")
+    specialtyWindowContainer.setAttribute("id", "specialty-window-container")
+
+    const arrowSpecialtyContainer = document.createElement("div")
+    arrowSpecialtyContainer.setAttribute("class", "arrow-specialty-container")
+    arrowSpecialtyContainer.setAttribute("id", "arrow-specialty-container")
+
+    specialtyWindowContainer.appendChild(arrowSpecialtyContainer)
+    specialtyContainer.appendChild(specialtyWindowContainer)
+  }
+
+  static loadLeftArrow() {
+    const arrowSpecialtyContainer = document.getElementById(
+      "arrow-specialty-container"
+    )
+    const leftArrowDiv = document.createElement("div")
+    leftArrowDiv.setAttribute("class", "arrow-container")
+    leftArrowDiv.setAttribute("id", "left-arrow-container")
+    arrowSpecialtyContainer.appendChild(leftArrowDiv)
+    Sixteen.insertLeftArrowDiv()
+  }
+
+  static insertLeftArrowDiv() {
+    const leftArrowContainer = document.getElementById("left-arrow-container")
+    const leftArrowDiv = document.createElement("div")
+    leftArrowDiv.setAttribute("class", "arrow-div")
+    leftArrowDiv.setAttribute("id", "left-arrow-div")
+    leftArrowDiv.onclick = function () {
+      Sixteen.plusSlides(1)
+    }
+    leftArrowContainer.appendChild(leftArrowDiv)
+  }
+
+  static insertRightArrowDiv() {
+    const rightArrowContainer = document.getElementById("right-arrow-container")
+    const rightArrowDiv = document.createElement("div")
+    rightArrowDiv.setAttribute("class", "arrow-div")
+    rightArrowDiv.setAttribute("id", "right-arrow-div")
+    rightArrowDiv.onclick = function () {
+      Sixteen.plusSlides(-1)
+    }
+    rightArrowContainer.appendChild(rightArrowDiv)
+  }
+
+  static loadSpecialtyWindow() {
+    const arrowSpecialtyContainer = document.getElementById(
+      "arrow-specialty-container"
+    )
+    const specialtyWindowDiv = document.createElement("div")
+    specialtyWindowDiv.setAttribute("class", "specialty-window-div")
+    specialtyWindowDiv.setAttribute("id", "specialty-window-div")
+    arrowSpecialtyContainer.appendChild(specialtyWindowDiv)
+    Sixteen.loadSpecialtyList()
+  }
+
+  static loadSpecialtyList() {
+    const specialtyWindowDiv = document.getElementById("specialty-window-div")
+    const specialties = Sixteen.specialties()
+    specialties.map((specialty) => {
+      const specialtyDiv = document.createElement("div")
+      specialtyDiv.setAttribute("class", "specialty-name")
+      Sixteen.assignSpecialtyDisplay(specialty, specialtyDiv)
+      specialtyDiv.setAttribute("id", `${specialty}-specialty`)
+      specialtyDiv.innerText = specialty
+      specialtyWindowDiv.appendChild(specialtyDiv)
+    })
+    Sixteen.loadCarouselDotsContainer()
+  }
+
+  static assignSpecialtyDisplay(specialty, specialtyDiv) {
+    if (specialty === "STANDARD") {
+      specialtyDiv.style = "display: block"
+    } else {
+      specialtyDiv.style = "display: none"
+    }
+  }
+
+  static loadCarouselDotsContainer() {
+    const specialtyWindowContainer = document.getElementById(
+      "specialty-window-container"
+    )
+    const dotsContainer = document.createElement("div")
+    dotsContainer.setAttribute("class", "dots-container")
+    dotsContainer.setAttribute("id", "dots-container")
+    specialtyWindowContainer.appendChild(dotsContainer)
+    Sixteen.loadCarouselDotsDivs()
+  }
+
+  static loadCarouselDotsDivs() {
+    const dots = Sixteen.dots()
+    const dotsContainer = document.getElementById("dots-container")
+    dots.map((dot) => {
+      const dotDiv = document.createElement("div")
+      dotDiv.setAttribute("class", "dot-div")
+      dotDiv.setAttribute("id", `dot-div-${dot}`)
+      dotDiv.onclick = function () {
+        alert("span")
+      }
+      dotsContainer.appendChild(dotDiv)
+    })
+  }
+
+  static plusSlides(n) {
+    let slideIndex = 1
+    Sixteen.showSlides((slideIndex += n))
+  }
+
+  static showSlides(n) {
+    console.log(n)
+  }
+
+  // End Carousel Functionality
+
+  static loadRightArrow() {
+    const arrowSpecialtyContainer = document.getElementById(
+      "arrow-specialty-container"
+    )
+    const rightArrowDiv = document.createElement("div")
+    rightArrowDiv.setAttribute("class", "arrow-container")
+    rightArrowDiv.setAttribute("id", "right-arrow-container")
+    arrowSpecialtyContainer.appendChild(rightArrowDiv)
+    Sixteen.insertRightArrowDiv()
+  }
+
+  static insertRightArrowDiv() {
+    const rightArrowContainer = document.getElementById("right-arrow-container")
+    const rightArrowDiv = document.createElement("div")
+    rightArrowDiv.setAttribute("class", "arrow-div")
+    rightArrowDiv.setAttribute("id", "right-arrow-div")
+    rightArrowDiv.onclick = function () {
+      Sixteen.plusSlides(-1)
+    }
+    rightArrowContainer.appendChild(rightArrowDiv)
   }
 
   static loadSixteenNavigation() {
@@ -33,7 +236,6 @@ class Sixteen {
     navigation.setAttribute("class", "sixteen-navigation")
     navigation.setAttribute("id", "sixteen-navigation")
     sixteenGui.appendChild(navigation)
-
     Sixteen.loadNavigationBtns()
   }
 
