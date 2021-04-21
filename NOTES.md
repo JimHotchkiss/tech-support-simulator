@@ -22,6 +22,6 @@
         (x) Render specialties 
         () Render dots container
             () span for each dot
-                () onClick for each dot
+                (x) onClick for each dot
 
 

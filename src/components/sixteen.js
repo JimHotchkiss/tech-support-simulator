@@ -196,8 +196,9 @@ class Sixteen {
     })
   }
 
+  // Need to define a variable to hold the index
   static plusSlides(n) {
-    Sixteen.showSlides((slideIndex += n))
+    Sixteen.showSlides(n)
   }
 
   static showSlides(n) {
