@@ -197,7 +197,6 @@ class Sixteen {
   }
 
   static plusSlides(n) {
-    let slideIndex = 1
     Sixteen.showSlides((slideIndex += n))
   }
 
