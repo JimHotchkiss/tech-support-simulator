@@ -122,7 +122,7 @@ class Sixteen {
     leftArrowDiv.setAttribute("class", "arrow-div")
     leftArrowDiv.setAttribute("id", "left-arrow-div")
     leftArrowDiv.onclick = function () {
-      Sixteen.plusSlides(1)
+      Sixteen.plusSlides(-1)
     }
     leftArrowContainer.appendChild(leftArrowDiv)
   }
@@ -133,7 +133,7 @@ class Sixteen {
     rightArrowDiv.setAttribute("class", "arrow-div")
     rightArrowDiv.setAttribute("id", "right-arrow-div")
     rightArrowDiv.onclick = function () {
-      Sixteen.plusSlides(-1)
+      Sixteen.plusSlides(1)
     }
     rightArrowContainer.appendChild(rightArrowDiv)
   }
@@ -152,9 +152,10 @@ class Sixteen {
   static loadSpecialtyList() {
     const specialtyWindowDiv = document.getElementById("specialty-window-div")
     const specialties = Sixteen.specialties()
-    specialties.map((specialty) => {
+    specialties.map((specialty, i) => {
       const specialtyDiv = document.createElement("div")
       specialtyDiv.setAttribute("class", "specialty-name")
+      specialtyDiv.setAttribute("data-id", i)
       Sixteen.assignSpecialtyDisplay(specialty, specialtyDiv)
       specialtyDiv.setAttribute("id", `${specialty}-specialty`)
       specialtyDiv.innerText = specialty
@@ -165,9 +166,7 @@ class Sixteen {
 
   static assignSpecialtyDisplay(specialty, specialtyDiv) {
     if (specialty === "STANDARD") {
-      specialtyDiv.style = "display: block"
-    } else {
-      specialtyDiv.style = "display: none"
+      specialtyDiv.classList.add("show")
     }
   }
 
@@ -194,6 +193,14 @@ class Sixteen {
       }
       dotsContainer.appendChild(dotDiv)
     })
+
+    Sixteen.loadDefaultSpecialtyDot()
+  }
+
+  static loadDefaultSpecialtyDot() {
+    // Selected Dot
+    const specialtyDots = document.getElementsByClassName("dot-div")
+    specialtyDots[0].classList.add("selected")
   }
 
   // Need to define a variable to hold the index
@@ -204,17 +211,47 @@ class Sixteen {
 
   static showSlides(n) {
     const specailtyNameDivs = document.getElementsByClassName("specialty-name")
-    for (let div of specailtyNameDivs) {
-      if (div.style.display === "block") {
-        const nextElement = div.nextSibling
-        div.style.display = "none"
-        if (nextElement != null) {
-          console.log("sup")
-          console.log(nextElement.style.display)
-          nextElement.style.display = "block"
-        }
+    const divsArray = Array.from(specailtyNameDivs)
+    let currentIndex
+    divsArray.map((div, i) => {
+      if (Object.values(div.classList).includes("show")) {
+        currentIndex = i
+        div.classList.remove("show")
       }
+    })
+    Sixteen.showNextSpecialty(n, currentIndex)
+  }
+
+  static showNextSpecialty(n, currentIndex) {
+    let nextSpecialty
+    const specailtyNameDivs = document.getElementsByClassName("specialty-name")
+    const divsArray = Array.from(specailtyNameDivs)
+    console.log(n, currentIndex)
+    if (n + currentIndex >= 7) {
+      nextSpecialty = 0
+    } else if (n + currentIndex < 0) {
+      nextSpecialty = 6
+    } else {
+      nextSpecialty = n + currentIndex
     }
+    divsArray[nextSpecialty].classList.add("show")
+    Sixteen.clearSpecialtyDots(nextSpecialty)
+  }
+
+  static clearSpecialtyDots(nextSpecialty) {
+    const specialtyDots = document.getElementsByClassName("dot-div")
+    Array.from(specialtyDots).map((dot) => {
+      if (Object.values(dot.classList).includes("selected")) {
+        dot.classList.remove("selected")
+      }
+    })
+
+    Sixteen.selectedSpecialtyDot(nextSpecialty)
+  }
+
+  static selectedSpecialtyDot(nextSpecialty) {
+    const specialtyDots = document.getElementsByClassName("dot-div")
+    Array.from(specialtyDots)[nextSpecialty].classList.add("selected")
   }
 
   // End Carousel Functionality

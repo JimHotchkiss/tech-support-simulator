@@ -166,13 +166,18 @@
     border: 3px solid #424242;
 }
 
-.specialty-name {
+.specialty-name.show {
+    display: block;
     font-family: roboto;
     font-size: 50px;
     font-weight: 400;
     text-align: center;
     padding-top: 15px;
     color: #fff;
+}
+
+.specialty-name {
+    display: none;
 }
 
 .arrow-container {
@@ -214,6 +219,10 @@
     transition: 0.2s;
 }
 
+.dot-div.selected {
+    background-color: #0da9ff;
+   
+}
 .dot-div:hover {
    cursor: pointer;
    background-color: #0da9ff;
