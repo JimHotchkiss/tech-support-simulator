@@ -122,20 +122,10 @@ class Sixteen {
     leftArrowDiv.setAttribute("class", "arrow-div")
     leftArrowDiv.setAttribute("id", "left-arrow-div")
     leftArrowDiv.onclick = function () {
+      console.log(leftArrowDiv)
       Sixteen.plusSlides(-1)
     }
     leftArrowContainer.appendChild(leftArrowDiv)
-  }
-
-  static insertRightArrowDiv() {
-    const rightArrowContainer = document.getElementById("right-arrow-container")
-    const rightArrowDiv = document.createElement("div")
-    rightArrowDiv.setAttribute("class", "arrow-div")
-    rightArrowDiv.setAttribute("id", "right-arrow-div")
-    rightArrowDiv.onclick = function () {
-      Sixteen.plusSlides(1)
-    }
-    rightArrowContainer.appendChild(rightArrowDiv)
   }
 
   static loadSpecialtyWindow() {
@@ -273,7 +263,7 @@ class Sixteen {
     rightArrowDiv.setAttribute("class", "arrow-div")
     rightArrowDiv.setAttribute("id", "right-arrow-div")
     rightArrowDiv.onclick = function () {
-      Sixteen.plusSlides(-1)
+      Sixteen.plusSlides(1)
     }
     rightArrowContainer.appendChild(rightArrowDiv)
   }
