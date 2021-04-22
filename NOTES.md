@@ -11,17 +11,34 @@
         (x) Specialties
         (x) Camera functionality buttons
         (x) Autolight and Defog
-    [] Implement specialty carosoul
-        () Insert necessary HTML
+    [X] Implement specialty carosoul
+        (x) Insert necessary HTML
             (x) Insert left arrow
             (x) Specialty window
             (x) Insert right arrow
             (x) Render arrow images
-                () Insert onclick functionality
+                (x) Insert onclick functionality
         (x) Define specialties array
         (x) Render specialties 
-        () Render dots container
-            () span for each dot
+        (x) Render dots container
+            (x) span for each dot
                 (x) onClick for each dot
+# 4/22/2021
+    [] Implement specialty dot functionality (when user clicks a dot, the specialty window correctly updates.)
+        * I don't think, on the actually 1688 CCU, that the dots have any functionality. Hold off on building this.
+    [] Render camera feature (WB, image, record)
+        * ccu-functions-container
+        () WB container
+        () Image container
+            () Image div
+        () Recording container
+            () Recording div
+    [] Render Defog and Autolight features
+        () Defog container 
+            () Img div
+        () Autolight container 
+            () Img div
+            () Text div
+
 
 

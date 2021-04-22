@@ -62,6 +62,56 @@ class Sixteen {
     autoLightDefogContainer.setAttribute("class", "home-containers")
     autoLightDefogContainer.setAttribute("id", "autolight-defog-container")
     sixteenHomeScreenContainer.appendChild(autoLightDefogContainer)
+    Sixteen.loadDefogContainer()
+    Sixteen.loadAutoLightContainer()
+  }
+
+  static loadAutoLightContainer() {
+    const autolightDefogContainer = document.getElementById(
+      "autolight-defog-container"
+    )
+    const autolightContainer = document.createElement("div")
+    autolightContainer.setAttribute("class", "defog-autolight-containers")
+    autolightContainer.setAttribute("id", "autolight-container")
+    autolightDefogContainer.appendChild(autolightContainer)
+    Sixteen.autolightCircleDiv()
+    Sixteen.autolightTextDiv()
+  }
+
+  static autolightTextDiv() {
+    const autolightContainer = document.getElementById("autolight-container")
+    const autolightText = document.createElement("div")
+    autolightText.setAttribute("class", "autolight-text")
+    autolightText.setAttribute("id", "autolight-text")
+    autolightText.innerText = "Auto Light"
+    autolightContainer.appendChild(autolightText)
+  }
+
+  static autolightCircleDiv() {
+    const autolightContainer = document.getElementById("autolight-container")
+    const autolightCircleDiv = document.createElement("div")
+    autolightCircleDiv.setAttribute("class", "autolight-circle-div")
+    autolightCircleDiv.setAttribute("id", "autlight-circle-div")
+    autolightContainer.appendChild(autolightCircleDiv)
+    Sixteen.autolightImageDiv()
+  }
+
+  static autolightImageDiv() {
+    const circleDiv = document.getElementById("autlight-circle-div")
+    const autolightImgDiv = document.createElement("div")
+    autolightImgDiv.setAttribute("class", "autolight-img-div")
+    autolightImgDiv.setAttribute("id", "autolight-img-div")
+    circleDiv.appendChild(autolightImgDiv)
+  }
+
+  static loadDefogContainer() {
+    const autolightDefogContainer = document.getElementById(
+      "autolight-defog-container"
+    )
+    const defogContainer = document.createElement("div")
+    defogContainer.setAttribute("class", "defog-autolight-containers")
+    defogContainer.setAttribute("id", "defog-container")
+    autolightDefogContainer.appendChild(defogContainer)
   }
 
   static loadCcuFunctionsContainer() {
@@ -72,7 +122,69 @@ class Sixteen {
     ccuFunctionsContainer.setAttribute("class", "home-containers")
     ccuFunctionsContainer.setAttribute("id", "ccu-functions-container")
     sixteenHomeScreenContainer.appendChild(ccuFunctionsContainer)
+    // Load CCU functionality
+    Sixteen.loadCcuWhiteBalanceBtn()
+    Sixteen.loadCcuImageBtn()
+    Sixteen.loadCcuVideoBtn()
   }
+
+  static loadCcuVideoBtn() {
+    const ccuFunctionsContainer = document.getElementById(
+      "ccu-functions-container"
+    )
+    const videoBtnContainer = document.createElement("div")
+    videoBtnContainer.setAttribute("class", "function-btn-container")
+    videoBtnContainer.setAttribute("id", "video-btn-container")
+    ccuFunctionsContainer.appendChild(videoBtnContainer)
+    Sixteen.loadCcuVidoeBtnImgDiv()
+  }
+
+  static loadCcuVidoeBtnImgDiv() {
+    const videoBtnContainer = document.getElementById("video-btn-container")
+    const videoBtnImgDiv = document.createElement("div")
+    videoBtnImgDiv.setAttribute("class", "img-div")
+    videoBtnImgDiv.setAttribute("id", "ccu-video-img-div")
+    videoBtnContainer.appendChild(videoBtnImgDiv)
+  }
+
+  static loadCcuImageBtn() {
+    const ccuFunctionsContainer = document.getElementById(
+      "ccu-functions-container"
+    )
+    const imageBtnContainer = document.createElement("div")
+    imageBtnContainer.setAttribute("class", "function-btn-container")
+    imageBtnContainer.setAttribute("id", "img-container")
+    ccuFunctionsContainer.appendChild(imageBtnContainer)
+    Sixteen.loadCcuImageBtnDiv()
+  }
+
+  static loadCcuImageBtnDiv() {
+    const imgContainer = document.getElementById("img-container")
+    const imgDiv = document.createElement("div")
+    imgDiv.setAttribute("class", "img-div")
+    imgDiv.setAttribute("id", "ccu-camera-img-div")
+    imgContainer.appendChild(imgDiv)
+  }
+
+  static loadCcuWhiteBalanceBtn() {
+    const ccuFunctionsContainer = document.getElementById(
+      "ccu-functions-container"
+    )
+    const wbContainer = document.createElement("div")
+    wbContainer.setAttribute("class", "function-btn-container")
+    wbContainer.setAttribute("id", "wb-container")
+    ccuFunctionsContainer.appendChild(wbContainer)
+    Sixteen.wbTextDiv()
+  }
+
+  static wbTextDiv() {
+    const wbContainer = document.getElementById("wb-container")
+    const wbText = document.createElement("div")
+    wbText.setAttribute("class", "wb-text")
+    wbText.innerText = "WB"
+    wbContainer.appendChild(wbText)
+  }
+
   static loadSpecialtyContainer() {
     const sixteenHomeScreenContainer = document.getElementById(
       "sixteen-home-container"
@@ -122,7 +234,6 @@ class Sixteen {
     leftArrowDiv.setAttribute("class", "arrow-div")
     leftArrowDiv.setAttribute("id", "left-arrow-div")
     leftArrowDiv.onclick = function () {
-      console.log(leftArrowDiv)
       Sixteen.plusSlides(-1)
     }
     leftArrowContainer.appendChild(leftArrowDiv)
@@ -216,7 +327,6 @@ class Sixteen {
     let nextSpecialty
     const specailtyNameDivs = document.getElementsByClassName("specialty-name")
     const divsArray = Array.from(specailtyNameDivs)
-    console.log(n, currentIndex)
     if (n + currentIndex >= 7) {
       nextSpecialty = 0
     } else if (n + currentIndex < 0) {
@@ -284,11 +394,23 @@ class Sixteen {
     const home = document.createElement("div")
     home.setAttribute("class", "navigation-btns")
     home.setAttribute("id", "sixteen-navigation-home")
+    home.onclick = function () {
+      Sixteen.clearHtml()
+      Sixteen.loadSixteenGui()
+    }
     navigation.appendChild(home)
     // AIM
     const aim = document.createElement("div")
     aim.setAttribute("class", "navigation-btns")
     aim.setAttribute("id", "sixteen-navigation-aim")
+    aim.onclick = function () {
+      const sixteenHomeContainer = document.getElementsByClassName(
+        "sixteen-home-container"
+      )
+      for (let item of sixteenHomeContainer) {
+        item.innerHTML = ""
+      }
+    }
     navigation.appendChild(aim)
     // Settings
     const settings = document.createElement("div")
@@ -299,6 +421,20 @@ class Sixteen {
     Sixteen.insertAimIconDiv()
     Sixteen.insertSettingsIconDiv()
     Sixteen.navigationBtnEventListener()
+    Sixteen.setDefaultSelectionBtn()
+  }
+
+  static setDefaultSelectionBtn() {
+    const sixteenNavigationHome = document.getElementById(
+      "sixteen-navigation-home"
+    )
+
+    if (!sixteenNavigationHome.getAttribute("class").includes("active")) {
+      const homeIconDiv = document.getElementsByClassName("home-icon-div")
+      homeIconDiv[0].classList.add("active")
+      console.log(homeIconDiv[0], sixteenNavigationHome)
+      sixteenNavigationHome.classList.add("active")
+    }
   }
 
   static insertSettingsIconDiv() {

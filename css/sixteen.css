@@ -229,3 +229,113 @@
    transition: 0.2s;
 }
 
+/* CCU Functions */
+#autolight-defog-container {
+    height: auto;
+}
+#ccu-functions-container {
+    max-width: 90%;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 16px;
+   
+    
+}
+.function-btn-container {
+    cursor: pointer;
+    width: 160px;
+    height: 120px;
+    background: #424242;
+    margin-top: auto;
+}
+
+#ccu-camera-img-div {
+    width: 120px;
+    height: 120px;
+    margin-top: 25px;
+    margin-left: 40px;
+  
+    background: transparent url("../images/camera-icon.png") 0% 0% no-repeat
+      padding-box;
+    opacity: 1;
+    background-size: 80px;
+
+}
+
+#ccu-video-img-div {
+    width: 120px;
+    height: 120px;
+    margin-top: 30px;
+    margin-left: 35px;
+  
+    background: transparent url("../images/video-icon.png") 0% 0% no-repeat
+      padding-box;
+    opacity: 1;
+    background-size: 95px;
+}
+
+/* Autolight defog Container*/
+#autolight-defog-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 93%;
+    height: 150px;
+}
+
+.wb-text {
+    font-family: roboto;
+    font-size: 60px;
+    font-weight: 500;
+    display:flex;
+    justify-content: center;
+    margin-top: 25px;
+    color: #fff;
+}
+.defog-autolight-containers {
+    margin-top: auto;
+}
+
+#defog-container {
+    width: 50px;
+    height: 50px;
+    background: transparent url("../images/defog.png") 0% 0% no-repeat
+      padding-box;
+    opacity: 0.2;
+    padding-bottom: 30px;
+    background-size: 50px;
+   
+}
+
+#autlight-circle-div {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 75px;
+    background: #37474f;
+    border-radius: 50%;
+    border: 2px solid #0da9ff;
+}
+
+#autolight-img-div {
+    width: 40px;
+    height: 40px;
+    background: transparent url("../images/lightbulb-icon.png") 0% 0% no-repeat
+      padding-box;
+    opacity: .5;
+    background-size: 40px;
+  }
+
+
+.autolight-text {
+    color: #fff;
+    font-family: roboto;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 8px;
+    margin-left: 8px;
+
+}
