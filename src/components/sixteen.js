@@ -27,6 +27,10 @@ class Sixteen {
     return [1, 2, 3, 4, 5, 6, 7]
   }
 
+  static gain() {
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  }
+
   static sixteenEventListener() {
     const sixteen = document.getElementById("sixteen")
     sixteen.addEventListener("click", () => {
@@ -578,6 +582,7 @@ class Sixteen {
     gainScreenDiv.setAttribute("class", "gain-screen-div")
     gainScreenDiv.setAttribute("id", "gain-screen-div")
     gainDiv.appendChild(gainScreenDiv)
+    Sixteen.loadGainData()
   }
 
   static loadPlusDiv() {
@@ -586,6 +591,17 @@ class Sixteen {
     plusDiv.setAttribute("class", "plus-div")
     plusDiv.setAttribute("id", "gain-plus-div")
     gainDiv.appendChild(plusDiv)
+  }
+
+  static loadGainData() {
+    const gainScreenDiv = document.getElementById("gain-screen-div")
+    Sixteen.gain().map((setting) => {
+      const gainSettingDiv = document.createElement("div")
+      gainSettingDiv.setAttribute("class", "gain-setting")
+      gainSettingDiv.setAttribute("id", `gain-setting-${setting}`)
+      gainSettingDiv.innerText = setting
+      gainScreenDiv.appendChild(gainSettingDiv)
+    })
   }
 
   // Aim Modality
