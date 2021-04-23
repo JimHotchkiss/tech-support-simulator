@@ -337,5 +337,54 @@
     font-weight: 500;
     margin-top: 8px;
     margin-left: 8px;
+}
 
+/* AIM Home Screen*/
+.aim-home-container {
+    Width: auto;
+    height: 100%;
+}
+
+.aim-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    width: 99%;
+    height: 75px;
+    background: #424242;
+    font-family: roboto;
+    font-size: 40px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.aim-modality-container {
+    width: 100%;
+    height: auto;
+}
+
+.modality-dots-container {
+    width: 100%;
+    height: 100px;
+    background: blue;
+}
+
+.modality-arrow-container {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background: red;
+}
+
+.aim-arrow-container {
+    width: 70px;
+    height: 100%;
+    background: #424242;
+}
+
+.aim-modality-screen {
+    width: 70px;
+    height: 100%;
+    background: green;
 }

@@ -403,6 +403,7 @@ class Sixteen {
       Sixteen.resetBtns()
       Sixteen.activateBtn(aim)
       Sixteen.clearSixteenHomeContainer()
+      Sixteen.loadAimHomeContainer()
     }
     navigation.appendChild(aim)
     // Settings
@@ -438,7 +439,6 @@ class Sixteen {
     if (!sixteenNavigationHome.getAttribute("class").includes("active")) {
       const homeIconDiv = document.getElementsByClassName("home-icon-div")
       homeIconDiv[0].classList.add("active")
-      console.log(homeIconDiv[0], sixteenNavigationHome)
       sixteenNavigationHome.classList.add("active")
     }
   }
@@ -469,7 +469,6 @@ class Sixteen {
   }
 
   static activateBtn(item) {
-    console.log(item)
     item.children.item(0).classList.add("active")
     item.classList.add("active")
   }
@@ -480,5 +479,100 @@ class Sixteen {
       item.children.item(0).classList.remove("active")
       item.classList.remove("active")
     }
+  }
+
+  // AIM Home Container
+  static loadAimHomeContainer() {
+    const sixteenHomeContainer = document.getElementById(
+      "sixteen-home-container"
+    )
+    const aimHomeContainer = document.createElement("div")
+    aimHomeContainer.setAttribute("class", "aim-home-container")
+    aimHomeContainer.setAttribute("id", "aim-home-container")
+    sixteenHomeContainer.appendChild(aimHomeContainer)
+    Sixteen.loadAimTitle()
+  }
+
+  static loadAimTitle() {
+    const aimHomeContainer = document.getElementById("aim-home-container")
+    const aimTitleContainer = document.createElement("div")
+    aimTitleContainer.setAttribute("class", "aim-title-container")
+    aimTitleContainer.setAttribute("id", "aim-title-container")
+    aimHomeContainer.appendChild(aimTitleContainer)
+    Sixteen.loadAimTitleDiv()
+    Sixteen.loadAimModalityContainer()
+  }
+
+  // Aim Modality
+  static loadAimModalityContainer() {
+    const aimHomeContainer = document.getElementById("aim-home-container")
+    const aimModalityContainer = document.createElement("div")
+    aimModalityContainer.setAttribute("class", "aim-modality-container")
+    aimModalityContainer.setAttribute("id", "aim-modality-container")
+    aimHomeContainer.appendChild(aimModalityContainer)
+    Sixteen.loadaimModailityArrowContainer()
+    Sixteen.loadAimModailityDotsContainer()
+  }
+
+  static loadAimModailityDotsContainer() {
+    const aimModalityContainer = document.getElementById(
+      "aim-modality-container"
+    )
+    const aimModailityDotsContainer = document.createElement("div")
+    aimModailityDotsContainer.setAttribute("class", "modality-dots-container")
+    aimModailityDotsContainer.setAttribute("id", "modality-dots-container")
+    aimModalityContainer.appendChild(aimModailityDotsContainer)
+  }
+
+  static loadaimModailityArrowContainer() {
+    const aimModalityContainer = document.getElementById(
+      "aim-modality-container"
+    )
+    const aimModailityArrowContainer = document.createElement("div")
+    aimModailityArrowContainer.setAttribute("class", "modality-arrow-container")
+    aimModailityArrowContainer.setAttribute("id", "modality-arrow-container")
+    aimModalityContainer.appendChild(aimModailityArrowContainer)
+    Sixteen.loadAimLeftArrowContainer()
+    Sixteen.loadAimModalityScreen()
+    Sixteen.loadAimRightArrowContainer()
+  }
+
+  static loadAimRightArrowContainer() {
+    const modalityArrowContainer = document.getElementById(
+      "modality-arrow-container"
+    )
+    const aimRightArrow = document.createElement("div")
+    aimRightArrow.setAttribute("class", "aim-arrow-container")
+    aimRightArrow.setAttribute("id", "aim-right-arrow-container")
+    modalityArrowContainer.appendChild(aimRightArrow)
+  }
+
+  static loadAimModalityScreen() {
+    const modalityArrowContainer = document.getElementById(
+      "modality-arrow-container"
+    )
+    const aimModalityScreen = document.createElement("div")
+    aimModalityScreen.setAttribute("class", "aim-modality-screen")
+    aimModalityScreen.setAttribute("id", "aim-modality-screen")
+    modalityArrowContainer.appendChild(aimModalityScreen)
+  }
+
+  static loadAimLeftArrowContainer() {
+    const modalityArrowContainer = document.getElementById(
+      "modality-arrow-container"
+    )
+    const aimLeftArrow = document.createElement("div")
+    aimLeftArrow.setAttribute("class", "aim-arrow-container")
+    aimLeftArrow.setAttribute("id", "aim-left-arrow-container")
+    modalityArrowContainer.appendChild(aimLeftArrow)
+  }
+
+  static loadAimTitleDiv() {
+    const aimTitleContainer = document.getElementById("aim-title-container")
+    const aimTitleDiv = document.createElement("div")
+    aimTitleDiv.setAttribute("class", "aim-title-div")
+    aimTitleDiv.setAttribute("id", "aim-title-div")
+    aimTitleDiv.innerText = "SPY"
+    aimTitleContainer.appendChild(aimTitleDiv)
   }
 }

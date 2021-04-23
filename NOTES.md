@@ -24,21 +24,34 @@
             (x) span for each dot
                 (x) onClick for each dot
 # 4/22/2021
-    [] Implement specialty dot functionality (when user clicks a dot, the specialty window correctly updates.)
+    [-] Implement specialty dot functionality (when user clicks a dot, the specialty window correctly updates.)
         * I don't think, on the actually 1688 CCU, that the dots have any functionality. Hold off on building this.
-    [] Render camera feature (WB, image, record)
+    [X] Render camera feature (WB, image, record)
         * ccu-functions-container
-        () WB container
-        () Image container
-            () Image div
-        () Recording container
-            () Recording div
-    [] Render Defog and Autolight features
-        () Defog container 
-            () Img div
-        () Autolight container 
-            () Img div
-            () Text div
+        (x) WB container
+        (x) Image container
+            (x) Image div
+        (x) Recording container
+            (x) Recording div
+    [x] Render Defog and Autolight features
+        (x) Defog container 
+            (x) Img div
+        (x) Autolight container 
+            (x) Img div
+            (x) Text div
+# 4/23/2021
+    [] Clear HTML when user selects a different option (Home, AIM, Settings)
+        () AIM
+            () Clear current view html
+            () Render AIM screen
+                () Aim home container
+                () Aim title container
+                    () Aim title div 
+                () Aim modality container 
+                    
+    [] Text Modal 
+        () Defog 
+        () Autolight
 
 
 
