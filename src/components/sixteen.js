@@ -391,9 +391,8 @@ class Sixteen {
     home.onclick = function () {
       Sixteen.resetBtns()
       Sixteen.activateBtn(home)
-      Sixteen.loadSpecialtyContainer()
-      Sixteen.loadCcuFunctionsContainer()
-      Sixteen.loadAutoLightDefogContainer()
+      Sixteen.clearHtml()
+      Sixteen.loadSixteenGui()
     }
     navigation.appendChild(home)
     // AIM
@@ -419,6 +418,7 @@ class Sixteen {
     Sixteen.insertHomeIconDiv()
     Sixteen.insertAimIconDiv()
     Sixteen.insertSettingsIconDiv()
+    Sixteen.setDefaultSelectionBtn()
   }
 
   static clearSixteenHomeContainer() {
