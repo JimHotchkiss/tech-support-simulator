@@ -15,6 +15,14 @@ class Sixteen {
     ]
   }
 
+  static modalities() {
+    return ["Overlay", "Contrast", "ENV"]
+  }
+
+  static modalityDots() {
+    return [1, 2, 3]
+  }
+
   static dots() {
     return [1, 2, 3, 4, 5, 6, 7]
   }
@@ -501,6 +509,83 @@ class Sixteen {
     aimHomeContainer.appendChild(aimTitleContainer)
     Sixteen.loadAimTitleDiv()
     Sixteen.loadAimModalityContainer()
+    Sixteen.loadGainBrightnessContainer()
+  }
+
+  static loadGainBrightnessContainer() {
+    const aimHomeContainer = document.getElementById("aim-home-container")
+    const gainBrightnessContainer = document.createElement("div")
+    gainBrightnessContainer.setAttribute("class", "gain-brightness-container")
+    gainBrightnessContainer.setAttribute("id", "gain-brightness-container")
+    aimHomeContainer.appendChild(gainBrightnessContainer)
+    Sixteen.loadGainContainer()
+    Sixteen.loadBrightnessContainer()
+  }
+
+  static loadBrightnessContainer() {
+    console.log("load brightness")
+    const gainBrightnessContainer = document.getElementById(
+      "gain-brightness-container"
+    )
+    const brightnessContainer = document.createElement("div")
+    brightnessContainer.setAttribute("class", "brightness-container")
+    gainBrightnessContainer.appendChild(brightnessContainer)
+  }
+
+  static loadGainContainer() {
+    const gainBrightnessContainer = document.getElementById(
+      "gain-brightness-container"
+    )
+    const gainContainer = document.createElement("div")
+    gainContainer.setAttribute("class", "gain-container")
+    gainContainer.setAttribute("id", "gain-container")
+    gainBrightnessContainer.appendChild(gainContainer)
+    Sixteen.loadGainTextDiv()
+    Sixteen.loadGainDiv()
+  }
+
+  static loadGainDiv() {
+    const gainContainer = document.getElementById("gain-container")
+    const gainDiv = document.createElement("div")
+    gainDiv.setAttribute("class", "gain-div")
+    gainDiv.setAttribute("id", "gain-div")
+    gainContainer.appendChild(gainDiv)
+    Sixteen.loadPlusDiv()
+    Sixteen.loadGainScreen()
+    Sixteen.loadMinusDiv()
+  }
+
+  static loadGainTextDiv() {
+    const gainContainer = document.getElementById("gain-container")
+    const gainTextDiv = document.createElement("div")
+    gainTextDiv.setAttribute("class", "gain-text")
+    gainTextDiv.setAttribute("id", "gain-text")
+    gainTextDiv.innerText = "Gain"
+    gainContainer.appendChild(gainTextDiv)
+  }
+
+  static loadMinusDiv() {
+    const gainDiv = document.getElementById("gain-div")
+    const minusDiv = document.createElement("div")
+    minusDiv.setAttribute("class", "plus-div")
+    minusDiv.setAttribute("id", "gain-minus-div")
+    gainDiv.appendChild(minusDiv)
+  }
+
+  static loadGainScreen() {
+    const gainDiv = document.getElementById("gain-div")
+    const gainScreenDiv = document.createElement("div")
+    gainScreenDiv.setAttribute("class", "gain-screen-div")
+    gainScreenDiv.setAttribute("id", "gain-screen-div")
+    gainDiv.appendChild(gainScreenDiv)
+  }
+
+  static loadPlusDiv() {
+    const gainDiv = document.getElementById("gain-div")
+    const plusDiv = document.createElement("div")
+    plusDiv.setAttribute("class", "plus-div")
+    plusDiv.setAttribute("id", "gain-plus-div")
+    gainDiv.appendChild(plusDiv)
   }
 
   // Aim Modality
@@ -522,6 +607,25 @@ class Sixteen {
     aimModailityDotsContainer.setAttribute("class", "modality-dots-container")
     aimModailityDotsContainer.setAttribute("id", "modality-dots-container")
     aimModalityContainer.appendChild(aimModailityDotsContainer)
+    Sixteen.loadModalityDots()
+  }
+
+  static loadModalityDots() {
+    const modalityDotsContainer = document.getElementById(
+      "modality-dots-container"
+    )
+    Sixteen.modalityDots().map((dot) => {
+      const dotDiv = document.createElement("div")
+      dotDiv.setAttribute("class", "modality-dot-div")
+      dotDiv.setAttribute("id", `modality-dot-${dot}`)
+      modalityDotsContainer.appendChild(dotDiv)
+    })
+    Sixteen.loadAimDefaultSpecialtyDot()
+  }
+
+  static loadAimDefaultSpecialtyDot() {
+    const modalityDots = document.getElementsByClassName("modality-dot-div")
+    modalityDots[0].classList.add("selected")
   }
 
   static loadaimModailityArrowContainer() {
@@ -545,6 +649,33 @@ class Sixteen {
     aimRightArrow.setAttribute("class", "aim-arrow-container")
     aimRightArrow.setAttribute("id", "aim-right-arrow-container")
     modalityArrowContainer.appendChild(aimRightArrow)
+    Sixteen.loadRightArrowDiv()
+  }
+
+  static loadRightArrowDiv() {
+    const aimRightArrowContainer = document.getElementById(
+      "aim-right-arrow-container"
+    )
+    const aimRightArrowDiv = document.createElement("div")
+    aimRightArrowDiv.setAttribute("class", "aim-arrow-div")
+    aimRightArrowDiv.setAttribute("id", "aim-right-arrow-div")
+    aimRightArrowDiv.onclick = function () {
+      Sixteen.aimPlusSlides(1)
+    }
+    aimRightArrowContainer.appendChild(aimRightArrowDiv)
+  }
+
+  static loadLeftArrowDiv() {
+    const aimLeftArrowContainer = document.getElementById(
+      "aim-left-arrow-container"
+    )
+    const aimLeftArrowDiv = document.createElement("div")
+    aimLeftArrowDiv.setAttribute("class", "aim-arrow-div")
+    aimLeftArrowDiv.setAttribute("id", "aim-left-arrow-div")
+    aimLeftArrowDiv.onclick = function () {
+      Sixteen.aimPlusSlides(-1)
+    }
+    aimLeftArrowContainer.appendChild(aimLeftArrowDiv)
   }
 
   static loadAimModalityScreen() {
@@ -555,6 +686,27 @@ class Sixteen {
     aimModalityScreen.setAttribute("class", "aim-modality-screen")
     aimModalityScreen.setAttribute("id", "aim-modality-screen")
     modalityArrowContainer.appendChild(aimModalityScreen)
+    Sixteen.loadModalityList()
+  }
+
+  static loadModalityList() {
+    const aimModalityScreen = document.getElementById("aim-modality-screen")
+
+    Sixteen.modalities().map((modality) => {
+      const modalityDiv = document.createElement("div")
+      modalityDiv.setAttribute("class", "modality-name")
+      modalityDiv.setAttribute("id", `${modality}-div`)
+      modalityDiv.setAttribute("data-modality", `${modality}`)
+      Sixteen.assignModalityDisplay(modality, modalityDiv)
+      modalityDiv.innerText = modality
+      aimModalityScreen.appendChild(modalityDiv)
+    })
+  }
+
+  static assignModalityDisplay(modality, modalityDiv) {
+    if (modality === "Overlay") {
+      modalityDiv.classList.add("show-modality")
+    }
   }
 
   static loadAimLeftArrowContainer() {
@@ -565,6 +717,7 @@ class Sixteen {
     aimLeftArrow.setAttribute("class", "aim-arrow-container")
     aimLeftArrow.setAttribute("id", "aim-left-arrow-container")
     modalityArrowContainer.appendChild(aimLeftArrow)
+    Sixteen.loadLeftArrowDiv()
   }
 
   static loadAimTitleDiv() {
@@ -574,5 +727,57 @@ class Sixteen {
     aimTitleDiv.setAttribute("id", "aim-title-div")
     aimTitleDiv.innerText = "SPY"
     aimTitleContainer.appendChild(aimTitleDiv)
+  }
+
+  // Aim Carousel
+  static aimPlusSlides(n) {
+    Sixteen.aimShowSlides(n)
+  }
+
+  static aimShowSlides(n) {
+    const modalityNameDivs = document.getElementsByClassName("modality-name")
+    const divsArray = Array.from(modalityNameDivs)
+    let currentIndex
+    divsArray.map((div, i) => {
+      console.log(Object.values(div.classList))
+      if (Object.values(div.classList).includes("show-modality")) {
+        currentIndex = i
+        div.classList.remove("show-modality")
+      }
+    })
+    Sixteen.aimShowNextSpecialty(n, currentIndex)
+  }
+
+  static aimShowNextSpecialty(n, currentIndex) {
+    console.log(n, currentIndex)
+    const modalityNameDivs = document.getElementsByClassName("modality-name")
+    const divsArray = Array.from(modalityNameDivs)
+    // console.log(n, currentIndex, divsArray[0])
+    let nextModality
+    if (n + currentIndex >= 3) {
+      nextModality = 0
+    } else if (n + currentIndex < 0) {
+      nextModality = 2
+    } else {
+      nextModality = n + currentIndex
+    }
+    divsArray[nextModality].classList.add("show-modality")
+    Sixteen.clearAimSpecialtyDots(nextModality)
+  }
+
+  static clearAimSpecialtyDots(nextModality) {
+    const aimSpecialtyDots = document.getElementsByClassName("modality-dot-div")
+    Array.from(aimSpecialtyDots).map((dot) => {
+      if (Object.values(dot.classList).includes("selected")) {
+        dot.classList.remove("selected")
+      }
+    })
+
+    Sixteen.selectedModalityDot(nextModality)
+  }
+
+  static selectedModalityDot(nextModality) {
+    const modalityDots = document.getElementsByClassName("modality-dot-div")
+    modalityDots[nextModality].classList.add("selected")
   }
 }

@@ -44,11 +44,22 @@
         () AIM
             () Clear current view html
             () Render AIM screen
-                () Aim home container
-                () Aim title container
-                    () Aim title div 
-                () Aim modality container 
-                    
+                (x) Aim home container
+                (x) Aim title container
+                    (x) Aim title div 
+                (x) Aim modality container 
+                    (x) Aim left arrow
+                    (x) Aim modality screen
+                    (x) Aim right arrow
+                    (x) Aim modality array
+                    (x) Load modality array data
+                    (x) Load modality dot spands
+                    (x) Modality carousel
+            () Render Gain Brightness
+                    () Gain container 
+                        () Gain plus
+                        () Gain window
+                        () Gain minus
     [] Text Modal 
         () Defog 
         () Autolight
