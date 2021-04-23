@@ -289,9 +289,6 @@ class Sixteen {
       const dotDiv = document.createElement("div")
       dotDiv.setAttribute("class", "dot-div")
       dotDiv.setAttribute("id", `dot-div-${dot}`)
-      dotDiv.onclick = function () {
-        alert("span")
-      }
       dotsContainer.appendChild(dotDiv)
     })
 
@@ -303,9 +300,6 @@ class Sixteen {
     const specialtyDots = document.getElementsByClassName("dot-div")
     specialtyDots[0].classList.add("selected")
   }
-
-  // Need to define a variable to hold the index
-
   static plusSlides(n) {
     Sixteen.showSlides(n)
   }
@@ -395,8 +389,11 @@ class Sixteen {
     home.setAttribute("class", "navigation-btns")
     home.setAttribute("id", "sixteen-navigation-home")
     home.onclick = function () {
-      Sixteen.clearHtml()
-      Sixteen.loadSixteenGui()
+      Sixteen.resetBtns()
+      Sixteen.activateBtn(home)
+      Sixteen.loadSpecialtyContainer()
+      Sixteen.loadCcuFunctionsContainer()
+      Sixteen.loadAutoLightDefogContainer()
     }
     navigation.appendChild(home)
     // AIM
@@ -404,24 +401,33 @@ class Sixteen {
     aim.setAttribute("class", "navigation-btns")
     aim.setAttribute("id", "sixteen-navigation-aim")
     aim.onclick = function () {
-      const sixteenHomeContainer = document.getElementsByClassName(
-        "sixteen-home-container"
-      )
-      for (let item of sixteenHomeContainer) {
-        item.innerHTML = ""
-      }
+      Sixteen.resetBtns()
+      Sixteen.activateBtn(aim)
+      Sixteen.clearSixteenHomeContainer()
     }
     navigation.appendChild(aim)
     // Settings
     const settings = document.createElement("div")
     settings.setAttribute("class", "navigation-btns")
     settings.setAttribute("id", "sixteen-navigation-settings")
+    settings.onclick = function () {
+      Sixteen.resetBtns()
+      Sixteen.activateBtn(settings)
+      Sixteen.clearSixteenHomeContainer()
+    }
     navigation.appendChild(settings)
     Sixteen.insertHomeIconDiv()
     Sixteen.insertAimIconDiv()
     Sixteen.insertSettingsIconDiv()
-    Sixteen.navigationBtnEventListener()
-    Sixteen.setDefaultSelectionBtn()
+  }
+
+  static clearSixteenHomeContainer() {
+    const sixteenHomeContainer = document.getElementById(
+      "sixteen-home-container"
+    )
+    while (sixteenHomeContainer.firstChild) {
+      sixteenHomeContainer.removeChild(sixteenHomeContainer.firstChild)
+    }
   }
 
   static setDefaultSelectionBtn() {
@@ -462,19 +468,10 @@ class Sixteen {
     homeDiv.appendChild(homeIconDiv)
   }
 
-  static navigationBtnEventListener() {
-    const btnDivs = document.getElementsByClassName("navigation-btns")
-    for (let item of btnDivs) {
-      item.addEventListener("click", () => {
-        Sixteen.resetBtns()
-        Sixteen.activateBtn(item)
-      })
-    }
-  }
-
   static activateBtn(item) {
-    item.children.item(0).classList.toggle("active")
-    item.classList.toggle("active")
+    console.log(item)
+    item.children.item(0).classList.add("active")
+    item.classList.add("active")
   }
 
   static resetBtns() {
