@@ -15,6 +15,10 @@ class Sixteen {
     ]
   }
 
+  static GainBrightness() {
+    return [{ id: "gain" }, { id: "brightness" }]
+  }
+
   static modalities() {
     return ["Overlay", "Contrast", "ENV"]
   }
@@ -29,6 +33,10 @@ class Sixteen {
 
   static gain() {
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  }
+
+  static brightness() {
+    return [1, 2, 3, 4, 5, 6, 7, 8]
   }
 
   static sixteenEventListener() {
@@ -82,12 +90,22 @@ class Sixteen {
     const autolightDefogContainer = document.getElementById(
       "autolight-defog-container"
     )
-    const autolightContainer = document.createElement("div")
-    autolightContainer.setAttribute("class", "defog-autolight-containers")
-    autolightContainer.setAttribute("id", "autolight-container")
-    autolightDefogContainer.appendChild(autolightContainer)
-    Sixteen.autolightCircleDiv()
-    Sixteen.autolightTextDiv()
+    if (!autolightDefogContainer) {
+      const spyAutoContainer = document.getElementById("spy-auto-container")
+      const autolightContainer = document.createElement("div")
+      autolightContainer.setAttribute("class", "spy-defog-autolight-containers")
+      autolightContainer.setAttribute("id", "autolight-container")
+      spyAutoContainer.appendChild(autolightContainer)
+      Sixteen.autolightCircleDiv()
+      Sixteen.autolightTextDiv()
+    } else {
+      const autolightContainer = document.createElement("div")
+      autolightContainer.setAttribute("class", "defog-autolight-containers")
+      autolightContainer.setAttribute("id", "autolight-container")
+      autolightDefogContainer.appendChild(autolightContainer)
+      Sixteen.autolightCircleDiv()
+      Sixteen.autolightTextDiv()
+    }
   }
 
   static autolightTextDiv() {
@@ -514,6 +532,25 @@ class Sixteen {
     Sixteen.loadAimTitleDiv()
     Sixteen.loadAimModalityContainer()
     Sixteen.loadGainBrightnessContainer()
+    Sixteen.loadSpyAutolightContainer()
+  }
+
+  static loadSpyAutolightContainer() {
+    const aimHomeContainer = document.getElementById("aim-home-container")
+    const spyAutoContainer = document.createElement("div")
+    spyAutoContainer.setAttribute("class", "spy-auto-container")
+    spyAutoContainer.setAttribute("id", "spy-auto-container")
+    aimHomeContainer.appendChild(spyAutoContainer)
+    Sixteen.loadSpyTextToggleContainer()
+    Sixteen.loadAutoLightContainer()
+  }
+
+  static loadSpyTextToggleContainer() {
+    const spyAutoContainer = document.getElementById("spy-auto-container")
+    const textToggleContainer = document.createElement("div")
+    textToggleContainer.setAttribute("class", "spy-text-toggle-container")
+    textToggleContainer.setAttribute("id", "spy-text-toggle-container")
+    spyAutoContainer.appendChild(textToggleContainer)
   }
 
   static loadGainBrightnessContainer() {
@@ -527,13 +564,56 @@ class Sixteen {
   }
 
   static loadBrightnessContainer() {
-    console.log("load brightness")
     const gainBrightnessContainer = document.getElementById(
       "gain-brightness-container"
     )
     const brightnessContainer = document.createElement("div")
     brightnessContainer.setAttribute("class", "brightness-container")
+    brightnessContainer.setAttribute("id", "brightness-container")
     gainBrightnessContainer.appendChild(brightnessContainer)
+    Sixteen.loadBrightnessTextDiv()
+    Sixteen.loadBrightnessDiv()
+  }
+
+  static loadBrightnessDiv() {
+    const brightnessContainer = document.getElementById("brightness-container")
+    const brightnessDiv = document.createElement("div")
+    brightnessDiv.setAttribute("class", "brightness-div")
+    brightnessDiv.setAttribute("id", "brightness-div")
+    brightnessContainer.appendChild(brightnessDiv)
+    Sixteen.loadBrightnessPlusDiv()
+    Sixteen.loadBrightnessScreen()
+    Sixteen.loadBrightnessMinusDiv()
+  }
+
+  static loadBrightnessScreen() {
+    const brightnessDiv = document.getElementById("brightness-div")
+    const brightnessScreenDiv = document.createElement("div")
+    brightnessScreenDiv.setAttribute("class", "brightness-screen-div")
+    brightnessScreenDiv.setAttribute("id", "brightness-screen-div")
+    brightnessDiv.appendChild(brightnessScreenDiv)
+    Sixteen.loadBrightnessData()
+  }
+
+  static loadBrightnessData() {
+    const brightnessScreenDiv = document.getElementById("brightness-screen-div")
+    Sixteen.brightness().map((setting) => {
+      const brightnessSettingDiv = document.createElement("div")
+      brightnessSettingDiv.setAttribute("class", "brightness-setting")
+      brightnessSettingDiv.setAttribute("id", `brightness-setting-${setting}`)
+      brightnessSettingDiv.innerText = setting
+      brightnessScreenDiv.appendChild(brightnessSettingDiv)
+    })
+  }
+
+  static loadBrightnessTextDiv() {
+    const brightnessContainer = document.getElementById("brightness-container")
+
+    const brightnessTextDiv = document.createElement("div")
+    brightnessTextDiv.setAttribute("class", "brightness-text")
+    brightnessTextDiv.setAttribute("id", "brightness-text")
+    brightnessTextDiv.innerText = "Brightness"
+    brightnessContainer.appendChild(brightnessTextDiv)
   }
 
   static loadGainContainer() {
@@ -554,9 +634,9 @@ class Sixteen {
     gainDiv.setAttribute("class", "gain-div")
     gainDiv.setAttribute("id", "gain-div")
     gainContainer.appendChild(gainDiv)
-    Sixteen.loadPlusDiv()
+    Sixteen.loadGainPlusDiv()
     Sixteen.loadGainScreen()
-    Sixteen.loadMinusDiv()
+    Sixteen.loadGainMinusDiv()
   }
 
   static loadGainTextDiv() {
@@ -568,12 +648,68 @@ class Sixteen {
     gainContainer.appendChild(gainTextDiv)
   }
 
-  static loadMinusDiv() {
+  static loadBrightnessPlusDiv() {
+    const brightnessDiv = document.getElementById("brightness-div")
+    const plussDiv = document.createElement("div")
+    plussDiv.setAttribute("class", "plus-div")
+    plussDiv.setAttribute("id", "brightness-plus-div")
+    brightnessDiv.appendChild(plussDiv)
+    Sixteen.loadBrightnessPlusImg()
+  }
+
+  static loadBrightnessPlusImg() {
+    const brightnessDiv = document.getElementById("brightness-plus-div")
+    const plusImgDiv = document.createElement("div")
+    plusImgDiv.setAttribute("class", "plus-img-div")
+    brightnessDiv.appendChild(plusImgDiv)
+  }
+
+  static loadBrightnessMinusDiv() {
+    const brightnessDiv = document.getElementById("brightness-div")
+    const minusDiv = document.createElement("div")
+    minusDiv.setAttribute("class", "minus-div")
+    minusDiv.setAttribute("id", "brightness-minus-div")
+    brightnessDiv.appendChild(minusDiv)
+    Sixteen.loadBrightnessMinusImg()
+  }
+
+  static loadBrightnessMinusImg() {
+    const brightnessDiv = document.getElementById("brightness-minus-div")
+    const minusImgDiv = document.createElement("div")
+    minusImgDiv.setAttribute("class", "minus-img-div")
+    brightnessDiv.appendChild(minusImgDiv)
+  }
+
+  static loadGainMinusDiv() {
     const gainDiv = document.getElementById("gain-div")
     const minusDiv = document.createElement("div")
-    minusDiv.setAttribute("class", "plus-div")
+    minusDiv.setAttribute("class", "minus-div")
     minusDiv.setAttribute("id", "gain-minus-div")
     gainDiv.appendChild(minusDiv)
+    Sixteen.loadGainMinusImg()
+  }
+
+  static loadGainMinusImg() {
+    const gainDiv = document.getElementById("gain-minus-div")
+    const minusImgDiv = document.createElement("div")
+    minusImgDiv.setAttribute("class", "minus-img-div")
+    gainDiv.appendChild(minusImgDiv)
+  }
+
+  static loadGainPlusDiv() {
+    const gainDiv = document.getElementById("gain-div")
+    const plusDiv = document.createElement("div")
+    plusDiv.setAttribute("class", "plus-div")
+    plusDiv.setAttribute("id", "gain-plus-div")
+    gainDiv.appendChild(plusDiv)
+    Sixteen.loadGainPlusImg()
+  }
+
+  static loadGainPlusImg() {
+    const gainDiv = document.getElementById("gain-plus-div")
+    const plusImgDiv = document.createElement("div")
+    plusImgDiv.setAttribute("class", "plus-img-div")
+    gainDiv.appendChild(plusImgDiv)
   }
 
   static loadGainScreen() {
@@ -583,14 +719,6 @@ class Sixteen {
     gainScreenDiv.setAttribute("id", "gain-screen-div")
     gainDiv.appendChild(gainScreenDiv)
     Sixteen.loadGainData()
-  }
-
-  static loadPlusDiv() {
-    const gainDiv = document.getElementById("gain-div")
-    const plusDiv = document.createElement("div")
-    plusDiv.setAttribute("class", "plus-div")
-    plusDiv.setAttribute("id", "gain-plus-div")
-    gainDiv.appendChild(plusDiv)
   }
 
   static loadGainData() {

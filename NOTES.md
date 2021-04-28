@@ -40,10 +40,10 @@
             (x) Img div
             (x) Text div
 # 4/23/2021
-    [] Clear HTML when user selects a different option (Home, AIM, Settings)
+    [X] Clear HTML when user selects a different option (Home, AIM, Settings)
         () AIM
-            () Clear current view html
-            () Render AIM screen
+            (x) Clear current view html
+            (x) Render AIM screen
                 (x) Aim home container
                 (x) Aim title container
                     (x) Aim title div 
@@ -60,6 +60,35 @@
                         () Gain plus
                         () Gain window
                         () Gain minus
+    [] Text Modal 
+        () Defog 
+        () Autolight
+# 4/28/2021
+        () AIM
+            (x) Clear current view html
+            (x) Render AIM screen
+                (x) Aim home container
+                (x) Aim title container
+                    (x) Aim title div 
+                (x) Aim modality container 
+                    (x) Aim left arrow
+                    (x) Aim modality screen
+                    (x) Aim right arrow
+                    (x) Aim modality array
+                    (x) Load modality array data
+                    (x) Load modality dot spands
+                    (x) Modality carousel
+            () Render Gain Brightness
+                    () Gain container 
+                        () Gain plus
+                        (x) Gain window
+                        () Gain minus
+                        () Toggle through Gain settings functionality
+                    () Brightness container 
+                        () Brightness plus
+                        () Brightness window
+                        () Brightness minus
+                        () Toggle through Brightness settings functionality
     [] Text Modal 
         () Defog 
         () Autolight

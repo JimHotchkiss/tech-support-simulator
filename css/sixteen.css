@@ -342,7 +342,6 @@
 /* AIM Home Screen*/
 .aim-home-container {
     Width: auto;
-    height: 100%;
 }
 
 .aim-title-container {
@@ -462,6 +461,26 @@
 .gain-container {
     width: auto;
     height: 70px;
+    
+}
+
+.brightness-container {
+    width: auto;
+    height: 70px;
+}
+
+.brightness-div {
+    display: flex;
+    width: 100%;
+    height: 70px;
+}
+
+.brightness-text {
+    font-family: roboto;
+    font-size: 25px;
+    font-weight: 400;
+    padding-top: 4px;
+    color: #fff;
 }
 
 .gain-div {
@@ -489,13 +508,20 @@
     color: #fff; 
 }
 
-.brightness-container {
-    width: 200px;
-    height: 70px;
-    background: lightcyan;
+.brightness-setting {
+    font-family: roboto;
+    font-size: 35px;
+    font-weight: 400;
+    padding-top: 4px;
+    text-align: center;
+    padding: 12px 0px;
+    color: #fff; 
 }
 
 .minus-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 100px;
     height: 70px;
     background: #424242
@@ -508,8 +534,56 @@
     overflow: hidden;
 }
 
+.brightness-screen-div {
+    min-width: 150px;
+    background: #212121;  
+    border: 3px solid #424242;
+    overflow: hidden;
+}
+
 .plus-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 100px;
     height: 70px;
     background: #424242
+}
+
+.minus-img-div {
+    width: 40px;
+    height: 10px;
+    background: transparent url("../images/minus-sign.png") 0% 0% no-repeat
+      padding-box;
+    background-size: 40px;
+}
+
+.plus-img-div {
+    width: 40px;
+    height: 40px;
+    background: transparent url("../images/plus-sign.png") 0% 0% no-repeat
+      padding-box;
+    background-size: 40px;
+}
+
+/* Spy Autolight Container*/
+.spy-auto-container{
+    display: flex;
+    margin: auto;
+    margin-top: 100px;
+    width: 95%;
+    height: 70px;
+
+}
+
+.spy-defog-autolight-containers {
+    margin-left: auto;
+    /* margin-top: -13px;
+    margin-right: 8px; */
+}
+
+.spy-text-toggle-container {
+    width: 40%;
+    height: 100%;
+    background: red;
 }
