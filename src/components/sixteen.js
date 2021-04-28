@@ -127,11 +127,22 @@ class Sixteen {
   }
 
   static autolightImageDiv() {
-    const circleDiv = document.getElementById("autlight-circle-div")
-    const autolightImgDiv = document.createElement("div")
-    autolightImgDiv.setAttribute("class", "autolight-img-div")
-    autolightImgDiv.setAttribute("id", "autolight-img-div")
-    circleDiv.appendChild(autolightImgDiv)
+    const autolightDefogContainer = document.getElementById(
+      "autolight-defog-container"
+    )
+    if (!autolightDefogContainer) {
+      const circleDiv = document.getElementById("autlight-circle-div")
+      const autolightImgDiv = document.createElement("div")
+      autolightImgDiv.setAttribute("class", "spy-autolight-img-div")
+      autolightImgDiv.setAttribute("id", "spy-autolight-img-div")
+      circleDiv.appendChild(autolightImgDiv)
+    } else {
+      const circleDiv = document.getElementById("autlight-circle-div")
+      const autolightImgDiv = document.createElement("div")
+      autolightImgDiv.setAttribute("class", "autolight-img-div")
+      autolightImgDiv.setAttribute("id", "autolight-img-div")
+      circleDiv.appendChild(autolightImgDiv)
+    }
   }
 
   static loadDefogContainer() {

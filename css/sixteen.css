@@ -329,6 +329,16 @@
     background-size: 40px;
   }
 
+  #spy-autolight-img-div {
+    width: 40px;
+    height: 40px;
+    background: transparent url("../images/lightbulb-icon.png") 0% 0% no-repeat
+      padding-box;
+    opacity: .5;
+    margin-top: 2px;
+    background-size: 40px;
+  }
+
 
 .autolight-text {
     color: #fff;
@@ -578,8 +588,8 @@
 
 .spy-defog-autolight-containers {
     margin-left: auto;
-    /* margin-top: -13px;
-    margin-right: 8px; */
+    margin-top: -14px;
+    margin-right: 8px;
 }
 
 .spy-text-toggle-container {
