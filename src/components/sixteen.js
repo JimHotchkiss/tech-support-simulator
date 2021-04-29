@@ -121,28 +121,65 @@ class Sixteen {
     const autolightContainer = document.getElementById("autolight-container")
     const autolightCircleDiv = document.createElement("div")
     autolightCircleDiv.setAttribute("class", "autolight-circle-div")
-    autolightCircleDiv.setAttribute("id", "autlight-circle-div")
+    autolightCircleDiv.setAttribute("id", "autolight-circle-div")
     autolightContainer.appendChild(autolightCircleDiv)
     Sixteen.autolightImageDiv()
+  }
+
+  static autolightToggle() {
+    const spyToggleContainer = document.getElementById("spy-toggle-container")
+    const spyToggleOff = document.getElementById("spy-toggle-off")
+    const autolightCircleDiv = document.getElementById("autolight-circle-div")
+    //autolightCircleDiv.getAttribute("class").includes("autolight-active")
+    if (!spyToggleContainer) {
+      Sixteen.autolightToggleImgDiv()
+      Sixteen.autolightToggleCircleDiv()
+    } else if (!spyToggleOff.getAttribute("class").includes("spy-on")) {
+      Sixteen.autolightToggleImgDiv()
+      Sixteen.autolightToggleCircleDiv()
+    }
+  }
+
+  static autolightToggleImgDiv() {
+    const autolightImgDiv = document.getElementById("autolight-img-div")
+    const spyAutolightImgDiv = document.getElementById("spy-autolight-img-div")
+    if (autolightImgDiv) {
+      autolightImgDiv.classList.toggle("autolight-active")
+    } else {
+      spyAutolightImgDiv.classList.toggle("autolight-active")
+    }
+  }
+
+  static autolightToggleCircleDiv() {
+    const autolightCircleDiv = document.getElementById("autolight-circle-div")
+    autolightCircleDiv.classList.toggle("autolight-active")
   }
 
   static autolightImageDiv() {
     const autolightDefogContainer = document.getElementById(
       "autolight-defog-container"
     )
+    const circleDiv = document.getElementById("autolight-circle-div")
     if (!autolightDefogContainer) {
-      const circleDiv = document.getElementById("autlight-circle-div")
       const autolightImgDiv = document.createElement("div")
       autolightImgDiv.setAttribute("class", "spy-autolight-img-div")
       autolightImgDiv.setAttribute("id", "spy-autolight-img-div")
       circleDiv.appendChild(autolightImgDiv)
+      Sixteen.autolightToggleEventListener()
     } else {
-      const circleDiv = document.getElementById("autlight-circle-div")
       const autolightImgDiv = document.createElement("div")
       autolightImgDiv.setAttribute("class", "autolight-img-div")
       autolightImgDiv.setAttribute("id", "autolight-img-div")
       circleDiv.appendChild(autolightImgDiv)
+      Sixteen.autolightToggleEventListener()
     }
+  }
+
+  static autolightToggleEventListener() {
+    const circleDiv = document.getElementById("autolight-circle-div")
+    circleDiv.addEventListener("click", () => {
+      Sixteen.autolightToggle()
+    })
   }
 
   static loadDefogContainer() {
@@ -562,6 +599,89 @@ class Sixteen {
     textToggleContainer.setAttribute("class", "spy-text-toggle-container")
     textToggleContainer.setAttribute("id", "spy-text-toggle-container")
     spyAutoContainer.appendChild(textToggleContainer)
+    Sixteen.insertSpyText()
+    Sixteen.insertSpyToggleContainer(textToggleContainer)
+  }
+
+  static insertSpyToggleContainer(textToggleContainer) {
+    const spyToggle = document.createElement("div")
+    spyToggle.setAttribute("class", "spy-toggle-container")
+    spyToggle.setAttribute("id", "spy-toggle-container")
+    textToggleContainer.appendChild(spyToggle)
+    Sixteen.insertSpyToggleOffDiv(spyToggle)
+    Sixteen.insertSpyToggleOnDiv(spyToggle)
+  }
+
+  static insertSpyToggleOnDiv(spyToggle) {
+    const toggleOn = document.createElement("div")
+    toggleOn.setAttribute("class", "spy-toggle-on")
+    toggleOn.setAttribute("id", "spy-toggle-on")
+    toggleOn.onclick = function () {
+      Sixteen.activateSpyToggleOn()
+      const autolightCircleDiv = document.getElementById("autolight-circle-div")
+      if (
+        autolightCircleDiv.getAttribute("class").includes("autolight-active")
+      ) {
+        Sixteen.autolightToggle()
+      }
+    }
+    spyToggle.appendChild(toggleOn)
+  }
+
+  static insertSpyToggleOffDiv(spyToggle) {
+    const toggleOff = document.createElement("div")
+    toggleOff.setAttribute("class", "spy-toggle-off")
+    toggleOff.setAttribute("id", "spy-toggle-off")
+    toggleOff.innerText = "Off"
+    spyToggle.appendChild(toggleOff)
+  }
+
+  static activateSpyToggleOn() {
+    Sixteen.activateOffDiv()
+    Sixteen.activateOnDiv()
+  }
+
+  static activateOnDiv() {
+    const spyToggleOn = document.getElementById("spy-toggle-on")
+    if (!spyToggleOn.getAttribute("class").includes("spy-on")) {
+      spyToggleOn.innerText = "On"
+      spyToggleOn.classList.toggle("spy-on")
+      Sixteen.toggleOffAutolight()
+    } else {
+      spyToggleOn.innerText = ""
+      spyToggleOn.classList.toggle("spy-on")
+    }
+  }
+
+  static toggleOffAutolight() {
+    const autolightCircleDiv = document.getElementById("autolight-circle-div")
+    if (autolightCircleDiv.getAttribute("class").includes("autolight-active")) {
+      console.log("toggle off autolight")
+      Sixteen.autolightToggleImgDiv()
+      Sixteen.autolightToggleCircleDiv()
+    }
+  }
+
+  static activateOffDiv() {
+    const spyToggleOff = document.getElementById("spy-toggle-off")
+    if (spyToggleOff.getAttribute("class").includes("spy-on")) {
+      spyToggleOff.innerText = "Off"
+      spyToggleOff.classList.toggle("spy-on")
+    } else {
+      spyToggleOff.innerText = ""
+      spyToggleOff.classList.toggle("spy-on")
+    }
+  }
+
+  static insertSpyText() {
+    const spyTextToggleContainer = document.getElementById(
+      "spy-text-toggle-container"
+    )
+    const spyText = document.createElement("div")
+    spyText.setAttribute("class", "spy-text")
+    spyText.setAttribute("id", "spy-text")
+    spyText.innerText = "SPY"
+    spyTextToggleContainer.appendChild(spyText)
   }
 
   static loadGainBrightnessContainer() {
@@ -608,9 +728,12 @@ class Sixteen {
 
   static loadBrightnessData() {
     const brightnessScreenDiv = document.getElementById("brightness-screen-div")
-    Sixteen.brightness().map((setting) => {
+    Sixteen.brightness().map((setting, i) => {
       const brightnessSettingDiv = document.createElement("div")
       brightnessSettingDiv.setAttribute("class", "brightness-setting")
+      if (i === 0) {
+        brightnessSettingDiv.classList.add("brightness-setting-show")
+      }
       brightnessSettingDiv.setAttribute("id", `brightness-setting-${setting}`)
       brightnessSettingDiv.innerText = setting
       brightnessScreenDiv.appendChild(brightnessSettingDiv)
@@ -661,11 +784,25 @@ class Sixteen {
 
   static loadBrightnessPlusDiv() {
     const brightnessDiv = document.getElementById("brightness-div")
-    const plussDiv = document.createElement("div")
-    plussDiv.setAttribute("class", "plus-div")
-    plussDiv.setAttribute("id", "brightness-plus-div")
-    brightnessDiv.appendChild(plussDiv)
-    Sixteen.loadBrightnessPlusImg()
+    const plusDiv = document.createElement("div")
+    plusDiv.setAttribute("class", "plus-div")
+    plusDiv.setAttribute("id", "brightness-plus-div")
+    plusDiv.onclick = function () {
+      Sixteen.brightnessPlusSlide(-1)
+    }
+    brightnessDiv.appendChild(plusDiv)
+    Sixteen.loadBrightnessPlusImg(-1)
+  }
+
+  static brightnessPlusSlide(n) {
+    const brightnessSettingDiv = document.getElementsByClassName(
+      "brightness-setting"
+    )
+    for (let item of brightnessSettingDiv) {
+      if (Object.values(item.classList).includes("brightness-setting-show")) {
+        item.classList.remove("brightness-setting-show")
+      }
+    }
   }
 
   static loadBrightnessPlusImg() {
@@ -894,7 +1031,6 @@ class Sixteen {
     const divsArray = Array.from(modalityNameDivs)
     let currentIndex
     divsArray.map((div, i) => {
-      console.log(Object.values(div.classList))
       if (Object.values(div.classList).includes("show-modality")) {
         currentIndex = i
         div.classList.remove("show-modality")

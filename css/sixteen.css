@@ -308,16 +308,18 @@
    
 }
 
-#autlight-circle-div {
+#autolight-circle-div {
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 75px;
     height: 75px;
+    /* background: #0da9ff; */
     background: #37474f;
     border-radius: 50%;
     border: 2px solid #0da9ff;
+    transition: 0.2s;
 }
 
 #autolight-img-div {
@@ -325,8 +327,20 @@
     height: 40px;
     background: transparent url("../images/lightbulb-icon.png") 0% 0% no-repeat
       padding-box;
-    opacity: .5;
+    opacity: 0.3;
     background-size: 40px;
+    transition: 0.2s;
+  }
+
+  #autolight-circle-div.autolight-active{
+    background: #0da9ff;
+    opacity: 1;
+    transition: 0.2s;
+  }
+
+  #autolight-img-div.autolight-active {
+  opacity: 1;
+  transition: 0.2s;
   }
 
   #spy-autolight-img-div {
@@ -337,6 +351,11 @@
     opacity: .5;
     margin-top: 2px;
     background-size: 40px;
+  }
+
+  #spy-autolight-img-div.autolight-active{
+    opacity: 1;
+    transition: 0.2s;
   }
 
 
@@ -518,7 +537,7 @@
     color: #fff; 
 }
 
-.brightness-setting {
+.brightness-setting.brightness-setting-show {
     font-family: roboto;
     font-size: 35px;
     font-weight: 400;
@@ -529,6 +548,7 @@
 }
 
 .minus-div {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -552,6 +572,7 @@
 }
 
 .plus-div {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -594,6 +615,61 @@
 
 .spy-text-toggle-container {
     width: 40%;
-    height: 100%;
-    background: red;
+    margin-top: -25px;
+    margin-left: 10px;
+}
+
+
+.spy-text {
+    font-family: roboto;
+    font-size: 25px;
+    font-weight: 400;
+    padding-top: 4px;
+    color: #fff;
+}
+
+.spy-toggle-container {
+    cursor: pointer;
+    display: flex;
+    height: 70px;
+    width: 80%;
+   border: 2px solid #424242;
+   background: #212121
+}
+
+.spy-toggle-off {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 50%;
+    font-family: roboto;
+    font-size: 25px;
+    font-weight: 400;
+    background: #424242;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.spy-toggle-off.spy-on{
+    background: #212121;
+    transition: 0.2s;
+}
+
+.spy-toggle-on {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 50%;
+    font-family: roboto;
+    font-size: 25px;
+    font-weight: 400;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.spy-toggle-on.spy-on {
+    background: #0da9ff;
+    transition: 0.2s;
 }
