@@ -788,21 +788,57 @@ class Sixteen {
     plusDiv.setAttribute("class", "plus-div")
     plusDiv.setAttribute("id", "brightness-plus-div")
     plusDiv.onclick = function () {
-      Sixteen.brightnessPlusSlide(-1)
+      Sixteen.brightnessPlusSlide(1)
     }
     brightnessDiv.appendChild(plusDiv)
-    Sixteen.loadBrightnessPlusImg(-1)
+    Sixteen.loadBrightnessPlusImg()
+  }
+
+  static brightnessMinusSlide(n) {
+    const brightnessSettingDiv = document.getElementsByClassName(
+      "brightness-setting"
+    )
+    let currentSettingIndex
+    for (let item of brightnessSettingDiv) {
+      if (Object.values(item.classList).includes("brightness-setting-show")) {
+        currentSettingIndex = parseInt(item.innerText - 1)
+        item.classList.remove("brightness-setting-show")
+      }
+    }
+    console.log(n, currentSettingIndex)
+    Sixteen.advanceBrightnessSetting(n, currentSettingIndex)
   }
 
   static brightnessPlusSlide(n) {
     const brightnessSettingDiv = document.getElementsByClassName(
       "brightness-setting"
     )
+    let currentSettingIndex
     for (let item of brightnessSettingDiv) {
       if (Object.values(item.classList).includes("brightness-setting-show")) {
+        currentSettingIndex = parseInt(item.innerText - 1)
         item.classList.remove("brightness-setting-show")
       }
     }
+    Sixteen.advanceBrightnessSetting(n, currentSettingIndex)
+  }
+
+  static advanceBrightnessSetting(n, currentSettingIndex) {
+    const brightnessSettingsNameDivs = document.getElementsByClassName(
+      "brightness-setting"
+    )
+    // Conver divs to array
+    const divsArray = Array.from(brightnessSettingsNameDivs)
+    let nextSetting
+    if (n + currentSettingIndex >= 7) {
+      nextSetting = 0
+    } else if (n + currentSettingIndex < 0) {
+      nextSetting = 6
+    } else {
+      nextSetting = n + currentSettingIndex
+    }
+
+    divsArray[nextSetting].classList.add("brightness-setting-show")
   }
 
   static loadBrightnessPlusImg() {
@@ -817,6 +853,10 @@ class Sixteen {
     const minusDiv = document.createElement("div")
     minusDiv.setAttribute("class", "minus-div")
     minusDiv.setAttribute("id", "brightness-minus-div")
+    minusDiv.onclick = function () {
+      console.log("minus fired")
+      Sixteen.brightnessMinusSlide(-1)
+    }
     brightnessDiv.appendChild(minusDiv)
     Sixteen.loadBrightnessMinusImg()
   }
@@ -833,6 +873,9 @@ class Sixteen {
     const minusDiv = document.createElement("div")
     minusDiv.setAttribute("class", "minus-div")
     minusDiv.setAttribute("id", "gain-minus-div")
+    minusDiv.onclick = function () {
+      Sixteen.gainMinusSlide(-1)
+    }
     gainDiv.appendChild(minusDiv)
     Sixteen.loadGainMinusImg()
   }
@@ -849,8 +892,51 @@ class Sixteen {
     const plusDiv = document.createElement("div")
     plusDiv.setAttribute("class", "plus-div")
     plusDiv.setAttribute("id", "gain-plus-div")
+    plusDiv.onclick = function () {
+      Sixteen.gainPlusSlide(1)
+    }
     gainDiv.appendChild(plusDiv)
     Sixteen.loadGainPlusImg()
+  }
+
+  static gainMinusSlide(n) {
+    const gainSettingDiv = document.getElementsByClassName("gain-setting")
+    let currentSettingIndex
+    for (let item of gainSettingDiv) {
+      if (Object.values(item.classList).includes("gain-setting-show")) {
+        currentSettingIndex = parseInt(item.innerText - 1)
+        item.classList.remove("gain-setting-show")
+      }
+    }
+    Sixteen.advanceGainSetting(n, currentSettingIndex)
+  }
+
+  static gainPlusSlide(n) {
+    const gainSettingDiv = document.getElementsByClassName("gain-setting")
+    let currentSettingIndex
+    for (let item of gainSettingDiv) {
+      if (Object.values(item.classList).includes("gain-setting-show")) {
+        currentSettingIndex = parseInt(item.innerText - 1)
+        item.classList.remove("gain-setting-show")
+      }
+    }
+    Sixteen.advanceGainSetting(n, currentSettingIndex)
+  }
+
+  static advanceGainSetting(n, currentSettingIndex) {
+    const gainSettingsNameDivs = document.getElementsByClassName("gain-setting")
+    // Conver divs to array
+    const divsArray = Array.from(gainSettingsNameDivs)
+    let nextSetting
+    if (n + currentSettingIndex >= 10) {
+      nextSetting = 0
+    } else if (n + currentSettingIndex < 0) {
+      nextSetting = 9
+    } else {
+      nextSetting = n + currentSettingIndex
+    }
+
+    divsArray[nextSetting].classList.add("gain-setting-show")
   }
 
   static loadGainPlusImg() {
@@ -871,10 +957,13 @@ class Sixteen {
 
   static loadGainData() {
     const gainScreenDiv = document.getElementById("gain-screen-div")
-    Sixteen.gain().map((setting) => {
+    Sixteen.gain().map((setting, i) => {
       const gainSettingDiv = document.createElement("div")
       gainSettingDiv.setAttribute("class", "gain-setting")
       gainSettingDiv.setAttribute("id", `gain-setting-${setting}`)
+      if (i === 0) {
+        gainSettingDiv.classList.add("gain-setting-show")
+      }
       gainSettingDiv.innerText = setting
       gainScreenDiv.appendChild(gainSettingDiv)
     })

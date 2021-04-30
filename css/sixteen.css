@@ -528,6 +528,11 @@
 }
 
 .gain-setting {
+    display:none; 
+}
+
+.gain-setting.gain-setting-show {
+    display: block;
     font-family: roboto;
     font-size: 35px;
     font-weight: 400;
@@ -537,7 +542,12 @@
     color: #fff; 
 }
 
+.brightness-setting {
+    display: none;
+}
+
 .brightness-setting.brightness-setting-show {
+    display:block;
     font-family: roboto;
     font-size: 35px;
     font-weight: 400;

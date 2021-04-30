@@ -133,6 +133,47 @@
     [] Text Modal 
         () Defog 
         () Autolight
+# 4/30/2021
+() AIM
+            (x) Clear current view html
+            (x) Render AIM screen
+                (x) Aim home container
+                (x) Aim title container
+                    (x) Aim title div 
+                (x) Aim modality container 
+                    (x) Aim left arrow
+                    (x) Aim modality screen
+                    (x) Aim right arrow
+                    (x) Aim modality array
+                    (x) Load modality array data
+                    (x) Load modality dot spands
+                    (x) Modality carousel
+            () Render Gain Brightness
+                    () Gain container 
+                        (x) Gain plus
+                        (x) Gain window
+                        (x) Gain minus
+                        () Toggle through Gain settings functionality
+                    (x) Brightness container 
+                        (x) Brightness plus
+                        (x) Brightness window
+                        (x) Brightness minus
+                        () Toggle through Brightness settings functionality
+             (x) Render Spy 
+                (x) Render Spy container
+                (x) Render On div
+                (x) Render Off div
+                (x) Implement On/Off functionality
+        (x) Autolight toggle
+            (x) Autlight toggle in spy mode
+            () User toggles Spy mode, autolight is disabled
+            () User is unable to toggle autolight, while in Spy mode
+            () If user is not in Laparoscopy specialty, Spy mode toggle is greyed ou
+# NOTE: Perhaps, use localstorage to save autolight toggle, specialites and spy mode status
+    [] Render Settings
+    [] Text Modal 
+        () Defog 
+        () Autolight
 
 
 
