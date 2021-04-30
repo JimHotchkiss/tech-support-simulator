@@ -492,6 +492,7 @@ class Sixteen {
       Sixteen.resetBtns()
       Sixteen.activateBtn(settings)
       Sixteen.clearSixteenHomeContainer()
+      Sixteen.loadSettingHomeContainer()
     }
     navigation.appendChild(settings)
     Sixteen.insertHomeIconDiv()
@@ -1159,5 +1160,49 @@ class Sixteen {
   static selectedModalityDot(nextModality) {
     const modalityDots = document.getElementsByClassName("modality-dot-div")
     modalityDots[nextModality].classList.add("selected")
+  }
+
+  // Setting page
+  static loadSettingHomeContainer() {
+    const sixteenHomeContainer = document.getElementById(
+      "sixteen-home-container"
+    )
+    const settingHomeContainer = document.createElement("div")
+    settingHomeContainer.setAttribute("class", "setting-home-container")
+    settingHomeContainer.setAttribute("id", "setting-home-container")
+    sixteenHomeContainer.appendChild(settingHomeContainer)
+    Sixteen.loadSettingsDivsContainer()
+    Sixteen.loadSettingsAutolightContainer()
+  }
+
+  static loadSettingsAutolightContainer() {
+    const settingsHomeContainer = document.getElementById(
+      "setting-home-container"
+    )
+    const autolightContainer = document.createElement("div")
+    autolightContainer.setAttribute("class", "settings-autolight-container")
+    autolightContainer.setAttribute("id", "settings-autolight-container")
+    settingsHomeContainer.appendChild(autolightContainer)
+    Sixteen.loadSettingsAutolightImageTextDiv()
+  }
+
+  static loadSettingsAutolightImageTextDiv() {
+    const settingsAutolightContainer = document.getElementById(
+      "settings-autolight-container"
+    )
+    const autolightImageTextDiv = document.createElement("div")
+    autolightImageTextDiv.setAttribute("class", "settings-autolight-text-div")
+    autolightImageTextDiv.setAttribute("id", "settings-autolight-text-div")
+    settingsAutolightContainer.appendChild(autolightImageTextDiv)
+  }
+
+  static loadSettingsDivsContainer() {
+    const settingsHomeContainer = document.getElementById(
+      "setting-home-container"
+    )
+    const settingsDivsContainer = document.createElement("div")
+    settingsDivsContainer.setAttribute("class", "settings-divs-container")
+    settingsDivsContainer.setAttribute("id", "settings-divs-container")
+    settingsHomeContainer.appendChild(settingsDivsContainer)
   }
 }
