@@ -1194,6 +1194,40 @@ class Sixteen {
     autolightImageTextDiv.setAttribute("class", "settings-autolight-text-div")
     autolightImageTextDiv.setAttribute("id", "settings-autolight-text-div")
     settingsAutolightContainer.appendChild(autolightImageTextDiv)
+    Sixteen.settingsAutolightCircleDiv()
+    Sixteen.settingsAutolightTextDiv()
+  }
+
+  static settingsAutolightTextDiv() {
+    const settingsAutolightTextDiv = document.getElementById(
+      "settings-autolight-text-div"
+    )
+    const settingsAutolightText = document.createElement("div")
+    settingsAutolightText.setAttribute("class", "settings-autolight-text")
+    settingsAutolightText.setAttribute("id", "settings-autolight-text")
+    settingsAutolightText.innerText = "Auto Light"
+    settingsAutolightTextDiv.appendChild(settingsAutolightText)
+  }
+
+  static settingsAutolightCircleDiv() {
+    const autolightImageTextDiv = document.getElementById(
+      "settings-autolight-text-div"
+    )
+    const settingsAutolightCircle = document.createElement("div")
+    settingsAutolightCircle.setAttribute("class", "settings-autolight-circle")
+    settingsAutolightCircle.setAttribute("id", "settings-autolight-circle")
+    autolightImageTextDiv.appendChild(settingsAutolightCircle)
+    Sixteen.settingsAutolightImgDiv()
+  }
+
+  static settingsAutolightImgDiv() {
+    const settingsAutolightCircle = document.getElementById(
+      "settings-autolight-circle"
+    )
+    const settingsAutolightImage = document.createElement("div")
+    settingsAutolightImage.setAttribute("class", "settings-autolight-image")
+    settingsAutolightImage.setAttribute("id", "settings-autolight-image")
+    settingsAutolightCircle.appendChild(settingsAutolightImage)
   }
 
   static loadSettingsDivsContainer() {

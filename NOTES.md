@@ -174,6 +174,18 @@
     [] Text Modal 
         () Defog 
         () Autolight
+# 5/5/2021
+() AIM
+    (x) Autolight toggle
+        (x) Autlight toggle in spy mode
+        (x) User toggles Spy mode, autolight is disabled
+        (x) User is unable to toggle autolight, while in Spy mode
+        () If user is not in Laparoscopy specialty, Spy mode toggle is greyed ou
+# NOTE: Perhaps, use localstorage to save autolight toggle, specialites and spy mode status
+    [] Render Settings
+    [] Text Modal 
+        () Defog 
+        () Autolight
 
 
 
