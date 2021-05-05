@@ -183,6 +183,13 @@
         () If user is not in Laparoscopy specialty, Spy mode toggle is greyed ou
 # NOTE: Perhaps, use localstorage to save autolight toggle, specialites and spy mode status
     [] Render Settings
+        () Settings Autolight 
+            (x) Autolight Container
+            (x) Autolight Circle div
+            (x) Autolight Image div
+            (x) Autolight Text div
+        () Settings Autolight functionality
+            () Event listener
     [] Text Modal 
         () Defog 
         () Autolight
