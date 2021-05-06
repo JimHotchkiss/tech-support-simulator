@@ -15,6 +15,10 @@ class Sixteen {
     ]
   }
 
+  static settings() {
+    return [{ name: "Brightness" }, { name: "Zoom" }, { name: "Enhancement" }]
+  }
+
   static GainBrightness() {
     return [{ id: "gain" }, { id: "brightness" }]
   }
@@ -129,8 +133,6 @@ class Sixteen {
   static autolightToggle() {
     const spyToggleContainer = document.getElementById("spy-toggle-container")
     const spyToggleOff = document.getElementById("spy-toggle-off")
-    const autolightCircleDiv = document.getElementById("autolight-circle-div")
-    //autolightCircleDiv.getAttribute("class").includes("autolight-active")
     if (!spyToggleContainer) {
       Sixteen.autolightToggleImgDiv()
       Sixteen.autolightToggleCircleDiv()
@@ -143,16 +145,24 @@ class Sixteen {
   static autolightToggleImgDiv() {
     const autolightImgDiv = document.getElementById("autolight-img-div")
     const spyAutolightImgDiv = document.getElementById("spy-autolight-img-div")
+    const settingsAutlightImgDiv = document.getElementById(
+      "settings-autolight-circle"
+    )
+
     if (autolightImgDiv) {
       autolightImgDiv.classList.toggle("autolight-active")
-    } else {
+    } else if (spyAutolightImgDiv) {
       spyAutolightImgDiv.classList.toggle("autolight-active")
+    } else {
+      settingsAutlightImgDiv.classList.toggle("autolight-active")
     }
   }
 
   static autolightToggleCircleDiv() {
     const autolightCircleDiv = document.getElementById("autolight-circle-div")
-    autolightCircleDiv.classList.toggle("autolight-active")
+    if (autolightCircleDiv) {
+      autolightCircleDiv.classList.toggle("autolight-active")
+    }
   }
 
   static autolightImageDiv() {
@@ -166,7 +176,7 @@ class Sixteen {
       autolightImgDiv.setAttribute("id", "spy-autolight-img-div")
       circleDiv.appendChild(autolightImgDiv)
       Sixteen.autolightToggleEventListener()
-    } else {
+    } else if (circleDiv) {
       const autolightImgDiv = document.createElement("div")
       autolightImgDiv.setAttribute("class", "autolight-img-div")
       autolightImgDiv.setAttribute("id", "autolight-img-div")
@@ -177,9 +187,33 @@ class Sixteen {
 
   static autolightToggleEventListener() {
     const circleDiv = document.getElementById("autolight-circle-div")
-    circleDiv.addEventListener("click", () => {
-      Sixteen.autolightToggle()
-    })
+    const settingsCircleDiv = document.getElementById(
+      "settings-autolight-circle"
+    )
+    if (!circleDiv) {
+      settingsCircleDiv.addEventListener("click", () => {
+        Sixteen.settingsAutolightToggle()
+      })
+    } else {
+      circleDiv.addEventListener("click", () => {
+        Sixteen.autolightToggle()
+      })
+    }
+  }
+
+  static settingsAutolightToggle() {
+    const settingsAutolightCircle = document.getElementById(
+      "settings-autolight-circle"
+    )
+    settingsAutolightCircle.classList.toggle("autolight-active")
+    Sixteen.settingsAutolightImgToggle()
+  }
+
+  static settingsAutolightImgToggle() {
+    const settingsAutolightImg = document.getElementById(
+      "settings-autolight-image"
+    )
+    settingsAutolightImg.classList.toggle("autolight-active")
   }
 
   static loadDefogContainer() {
@@ -1228,6 +1262,7 @@ class Sixteen {
     settingsAutolightImage.setAttribute("class", "settings-autolight-image")
     settingsAutolightImage.setAttribute("id", "settings-autolight-image")
     settingsAutolightCircle.appendChild(settingsAutolightImage)
+    Sixteen.autolightToggleEventListener()
   }
 
   static loadSettingsDivsContainer() {
@@ -1238,5 +1273,37 @@ class Sixteen {
     settingsDivsContainer.setAttribute("class", "settings-divs-container")
     settingsDivsContainer.setAttribute("id", "settings-divs-container")
     settingsHomeContainer.appendChild(settingsDivsContainer)
+    Sixteen.settingsLoadSettingsWindows()
+    // Sixteen.settingsLoadBrightness()
+    // Sixteen.settingsLoadZoom()
+    // Sixteen.settingsLoadEnhancement()
+  }
+
+  static settingsLoadSettingsWindows() {
+    const settingsDivsContainer = document.getElementById(
+      "settings-divs-container"
+    )
+    Sixteen.settings().map((setting) => {
+      const settingDiv = document.createElement("div")
+      settingDiv.setAttribute("class", "settings-setting-div")
+      settingDiv.setAttribute("id", `${setting.name}-setting-div`)
+      // Add plus div, setting window and minus div
+      // Plus div
+      const plusDiv = document.createElement("div")
+      plusDiv.setAttribute("class", "plus-div")
+      plusDiv.setAttribute("id", "settings-plus-div")
+      settingDiv.appendChild(plusDiv)
+      // Window div
+      const windowDiv = document.createElement("div")
+      windowDiv.setAttribute("class", "settings-window-div")
+      windowDiv.setAttribute("id", "settings-window-div")
+      settingDiv.appendChild(windowDiv)
+      // Minus div
+      const minusDiv = document.createElement("div")
+      minusDiv.setAttribute("class", "minus-div")
+      minusDiv.setAttribute("id", "settings-minus-div")
+      settingDiv.appendChild(minusDiv)
+      settingsDivsContainer.appendChild(settingDiv)
+    })
   }
 }
