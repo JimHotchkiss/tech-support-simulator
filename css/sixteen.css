@@ -762,10 +762,22 @@
 
 .settings-window-div {
     min-width: 150px;
-    min-height: 67px;
+    max-height: 64px;
     background: #212121;  
     border: 3px solid #424242;
     overflow: hidden;
+    color: #fff;
+}
+
+.settings-setting-value {
+    display: block;
+    font-family: roboto;
+    font-size: 35px;
+    font-weight: 400;
+    padding-top: 4px;
+    text-align: center;
+    padding: 12px 0px;
+    color: #fff; 
 }
 
 .settings-setting-div {

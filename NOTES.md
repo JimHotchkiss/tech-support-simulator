@@ -211,6 +211,12 @@
             (x) Event listener
         () Render settings
             () Build function that builds all three settings, instead of an individual function for each setting
+                () Container    
+                    () Text div
+                    () adjustments and title div
+                (x) Plus div
+                (x) Setting window
+                (x) Minus div
     [] Text Modal 
         () Defog 
         () Autolight

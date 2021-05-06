@@ -43,6 +43,14 @@ class Sixteen {
     return [1, 2, 3, 4, 5, 6, 7, 8]
   }
 
+  static zoom() {
+    return [1, 2, 3, 4, 5, 6, 7]
+  }
+
+  static enhancement() {
+    return [1, 2, 3, 4, 5, 6, 7, 8]
+  }
+
   static sixteenEventListener() {
     const sixteen = document.getElementById("sixteen")
     sixteen.addEventListener("click", () => {
@@ -1296,7 +1304,30 @@ class Sixteen {
       // Window div
       const windowDiv = document.createElement("div")
       windowDiv.setAttribute("class", "settings-window-div")
-      windowDiv.setAttribute("id", "settings-window-div")
+      windowDiv.setAttribute("id", `${setting.name}-window-div`)
+      if (windowDiv.getAttribute("id") === "Brightness-window-div") {
+        Sixteen.brightness().map((value) => {
+          const windowValue = document.createElement("div")
+          windowValue.setAttribute("class", "settings-setting-value")
+          windowValue.innerText = value
+          windowDiv.appendChild(windowValue)
+        })
+      } else if (windowDiv.getAttribute("id") === "Zoom-window-div") {
+        Sixteen.zoom().map((value) => {
+          const windowValue = document.createElement("div")
+          windowValue.setAttribute("class", "settings-setting-value")
+          windowValue.innerText = value
+          windowDiv.appendChild(windowValue)
+        })
+      } else {
+        Sixteen.enhancement().map((value) => {
+          const windowValue = document.createElement("div")
+          windowValue.setAttribute("class", "settings-setting-value")
+          windowValue.innerText = value
+          windowDiv.appendChild(windowValue)
+        })
+      }
+
       settingDiv.appendChild(windowDiv)
       // Minus div
       const minusDiv = document.createElement("div")
