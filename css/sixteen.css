@@ -766,10 +766,9 @@
     background: #212121;  
     border: 3px solid #424242;
     overflow: hidden;
-    color: #fff;
 }
 
-.settings-setting-value {
+.settings-setting-value.settings-setting-show {
     display: block;
     font-family: roboto;
     font-size: 35px;
@@ -780,9 +779,30 @@
     color: #fff; 
 }
 
+.settings-setting-value {
+    display: none;
+}
+
 .settings-setting-div {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70px;
+}
+
+.settings-setting-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.plus-window-minus-div {
+    display: flex;
+}
+
+.settings-setting-title {
+    font-family: roboto;
+    font-size: 25px;
+    font-weight: 400;
+    padding-top: 4px;
+    color: #fff;
 }
