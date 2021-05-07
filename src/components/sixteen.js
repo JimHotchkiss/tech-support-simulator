@@ -1171,7 +1171,6 @@ class Sixteen {
   }
 
   static aimShowNextSpecialty(n, currentIndex) {
-    console.log(n, currentIndex)
     const modalityNameDivs = document.getElementsByClassName("modality-name")
     const divsArray = Array.from(modalityNameDivs)
     // console.log(n, currentIndex, divsArray[0])
@@ -1281,9 +1280,6 @@ class Sixteen {
     settingsDivsContainer.setAttribute("id", "settings-divs-container")
     settingsHomeContainer.appendChild(settingsDivsContainer)
     Sixteen.settingsLoadSettingsWindows()
-    // Sixteen.settingsLoadBrightness()
-    // Sixteen.settingsLoadZoom()
-    // Sixteen.settingsLoadEnhancement()
   }
 
   static settingsLoadSettingsWindows() {
@@ -1318,9 +1314,6 @@ class Sixteen {
       plusImg.setAttribute("class", "plus-img-div")
       plusImg.setAttribute("id", `${setting.name}-plus-img`)
       plusDiv.appendChild(plusImg)
-      plusDiv.onclick = function () {
-        Sixteen.advancePlusSetting(1)
-      }
       plusWindowMinusDiv.appendChild(plusDiv)
       settingsSettingContainer.appendChild(plusWindowMinusDiv)
       // Window div
@@ -1331,8 +1324,8 @@ class Sixteen {
         Sixteen.brightness().map((value, i) => {
           const windowValue = document.createElement("div")
           windowValue.setAttribute("class", "settings-setting-value")
+          windowValue.setAttribute("id", `${setting.name}-settings-setting`)
           if (i === 0) {
-            console.log(i === 0)
             windowValue.classList.add("settings-setting-show")
           }
           windowValue.innerText = value
@@ -1343,8 +1336,9 @@ class Sixteen {
         Sixteen.zoom().map((value, i) => {
           const windowValue = document.createElement("div")
           windowValue.setAttribute("class", "settings-setting-value")
+          windowValue.setAttribute("id", `${setting.name}-settings-setting`)
+
           if (i === 0) {
-            console.log(i === 0)
             windowValue.classList.add("settings-setting-show")
           }
           windowValue.innerText = value
@@ -1355,8 +1349,9 @@ class Sixteen {
         Sixteen.enhancement().map((value, i) => {
           const windowValue = document.createElement("div")
           windowValue.setAttribute("class", "settings-setting-value")
+          windowValue.setAttribute("id", `${setting.name}-settings-setting`)
+
           if (i === 0) {
-            console.log(i === 0)
             windowValue.classList.add("settings-setting-show")
           }
           windowValue.innerText = value
@@ -1370,9 +1365,6 @@ class Sixteen {
       const minusDiv = document.createElement("div")
       minusDiv.setAttribute("class", "minus-div")
       minusDiv.setAttribute("id", `${setting.name}-minus-div`)
-      minusDiv.onclick = function () {
-        alert("minus")
-      }
       // Minus img
       const minusImg = document.createElement("div")
       minusImg.setAttribute("class", "minus-img-div")
@@ -1382,25 +1374,83 @@ class Sixteen {
       settingsSettingContainer.appendChild(plusWindowMinusDiv)
       settingDiv.appendChild(settingsSettingContainer)
       settingsDivsContainer.appendChild(settingDiv)
+      // Plus/Minus event listener
+      plusDiv.onclick = function () {
+        let settingName
+        if (plusDiv.id === "Enhancement-plus-div") {
+          settingName = "Enhancement"
+        } else if (plusDiv.id === "Zoom-plus-div") {
+          settingName = "Zoom"
+        } else {
+          settingName = "Brightness"
+        }
+        Sixteen.advancePlusSetting(1, settingName)
+      }
+      minusDiv.onclick = function () {
+        let settingName
+        if (plusDiv.id === "Enhancement-plus-div") {
+          settingName = "Enhancement"
+        } else if (plusDiv.id === "Zoom-plus-div") {
+          settingName = "Zoom"
+        } else {
+          settingName = "Brightness"
+        }
+        Sixteen.advanceMinusSetting(-1, settingName)
+      }
     })
   }
 
-  static advancePlusSetting(n) {
+  static advancePlusSetting(n, settingName) {
     const settingsSettingDiv = document.getElementsByClassName(
-      "settings-setting"
+      "settings-setting-value"
     )
     let currentSettingIndex
     for (let item of settingsSettingDiv) {
       if (Object.values(item.classList).includes("settings-setting-show")) {
-        console.log(item.innerText)
-        currentSettingIndex = parseInt(item.innerText - 1)
-        item.classList.remove("gain-setting-show")
+        if (`${settingName}-settings-setting` === item.id) {
+          console.log(settingName, item.id)
+          currentSettingIndex = parseInt(item.innerText - 1)
+          item.classList.remove("settings-setting-show")
+        }
+      }
+    }
+    Sixteen.advanceSettingsSetting(n, currentSettingIndex)
+  }
+
+  static advanceMinusSetting(n, settingName) {
+    const settingsSettingDiv = document.getElementsByClassName(
+      "settings-setting-value"
+    )
+    let currentSettingIndex
+    for (let item of settingsSettingDiv) {
+      if (Object.values(item.classList).includes("settings-setting-show")) {
+        if (`${settingName}-settings-setting` === item.id) {
+          console.log(settingName, item.id)
+          currentSettingIndex = parseInt(item.innerText - 1)
+          item.classList.remove("settings-setting-show")
+        }
       }
     }
     Sixteen.advanceSettingsSetting(n, currentSettingIndex)
   }
 
   static advanceSettingsSetting(n, currentSettingIndex) {
-    console.log(n, currentSettingIndex)
+    const settingsSettingsNameDivs = document.getElementsByClassName(
+      "settings-setting-value"
+    )
+    // Conver divs to array
+    const divsArray = Array.from(settingsSettingsNameDivs)
+    let nextSetting
+    nextSetting = n + currentSettingIndex
+    console.log(divsArray[n])
+    // if (n + currentSettingIndex >= 10) {
+    //   nextSetting = 0
+    // } else if (n + currentSettingIndex < 0) {
+    //   nextSetting = 9
+    // } else {
+    //   nextSetting = n + currentSettingIndex
+    // }
+
+    divsArray[nextSetting].classList.add("settings-setting-show")
   }
 }
