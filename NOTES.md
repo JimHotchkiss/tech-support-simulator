@@ -248,6 +248,17 @@
     [] Text Modal 
         () Defog 
         () Autolight
+# 5/12/2021
+ [] Build settings adjustment functionality
+ [] HUB
+    (x) Add HUB btn to sidebar
+    (x) Render HUB homepage
+    () Functionality
+        () Areas clickable
+        () Search window
+ [] Text Modal 
+    () Defog 
+    () Autolight
 
 
 

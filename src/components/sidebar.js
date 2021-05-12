@@ -30,6 +30,22 @@ class Sidebar {
     mainbody.appendChild(guiSimulatorContainer)
     root.appendChild(mainbody)
 
+    // HUB
+    const hub = document.createElement("div")
+    hub.setAttribute("class", "hub")
+    hub.setAttribute("id", "hub-btn")
+    hub.onclick = function () {
+      Sidebar.clearGuiSimulatorContainer()
+      Hub.loadHubLandingPage()
+    }
+    hub.innerText = "HUB"
+    navigation.appendChild(hub)
+
+    mainbody.appendChild(sidebar)
+    mainbody.appendChild(navigation)
+    mainbody.appendChild(guiSimulatorContainer)
+    root.appendChild(mainbody)
+
     // Clear Btn -
     const clearGui = document.createElement("div")
     clearGui.setAttribute("class", "clear-gui")
