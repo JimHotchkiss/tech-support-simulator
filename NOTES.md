@@ -254,8 +254,27 @@
     (x) Add HUB btn to sidebar
     (x) Render HUB homepage
     () Functionality
-        () Areas clickable
+        (x) Areas clickable
         () Search window
+ [] Text Modal 
+    () Defog 
+    () Autolight
+# 5/13/2021
+ [X] Build settings adjustment functionality
+    () Text modal for Advance Settings
+        (x) Settings - short press
+        (x) Advance Settings - long press
+ [] Fix Gain and Brightness settings on SPY 
+    () Gain - Settings don't cycle
+    () Brightness - Settings don't cycle
+ [] HUB
+    (x) Add HUB btn to sidebar
+    (x) Render HUB homepage
+    () Functionality
+        (x) Areas clickable
+        () Search window
+ [] Advance Settings
+    () Render div
  [] Text Modal 
     () Defog 
     () Autolight

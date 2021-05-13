@@ -73,6 +73,7 @@ class Sixteen {
     Sixteen.guiSimulatorContainer().appendChild(gui)
     Sixteen.loadSixteenNavigation()
     Sixteen.loadSixteenHomescreen()
+    Sixteen.loadSettingsTextModal()
   }
 
   static loadSixteenHomescreen() {
@@ -84,6 +85,80 @@ class Sixteen {
     Sixteen.loadSpecialtyContainer()
     Sixteen.loadCcuFunctionsContainer()
     Sixteen.loadAutoLightDefogContainer()
+  }
+
+  // <!-- Modal-->
+  // <div class="modal" id="modal">
+  //   <div class="modal-header">
+  //     <div id="modal-title" class="modal-title"></div>
+  //     <button id="modal-close" class="close-modal">&times;</button>
+  //   </div>
+  //   <div id="modal-body" class="modal-body">
+  //     <!-- <h3 id="modal-title-text"></h3>
+  //     <h3 id="modal-pn-text" class="modal-pn-text"></h3> -->
+  //     <div id="modal-body-description" class="modal-body-description">
+  //       <!-- <p id="modal-body-description-text"></p> -->
+  //     </div>
+  //   </div>
+  // </div>
+  // <div id="modal-overlay"></div>
+  // <!-- End Modal -->
+
+  static loadSettingsTextModal() {
+    const sixteenGui = document.getElementById("sixteen-gui")
+    const modal = document.createElement("div")
+    modal.setAttribute("class", "modal")
+    modal.setAttribute("id", "modal")
+    // Modal Header
+    const modalHeader = document.createElement("div")
+    modalHeader.setAttribute("class", "modal-header")
+    modalHeader.setAttribute("id", "modal-header")
+    // Modal title
+    const modalTitle = document.createElement("div")
+    modalTitle.setAttribute("class", "modal-title")
+    modalTitle.setAttribute("id", "modal-title")
+    // Modal close btn
+    const modalCloseBtn = document.createElement("div")
+    modalCloseBtn.setAttribute("class", "modal-close")
+    modalCloseBtn.setAttribute("id", "modal-close")
+    modalCloseBtn.innerHTML = "&times;"
+    modalCloseBtn.onclick = function () {
+      const modal = document.getElementById("modal")
+      modal.classList.remove("active")
+    }
+
+    // Settings Btns Div
+    const settingsBtnsDiv = document.createElement("div")
+    settingsBtnsDiv.setAttribute("class", "settings-btns-div")
+
+    // Settings Btn
+    const modalSettingsBtn = document.createElement("div")
+    modalSettingsBtn.setAttribute("class", "settings-btn")
+    modalSettingsBtn.setAttribute("id", "settings-btn")
+    modalSettingsBtn.innerText = "Settings"
+    modalSettingsBtn.onclick = function () {
+      Sixteen.textModalClose()
+      Sixteen.loadSettingHomeContainer()
+    }
+
+    settingsBtnsDiv.appendChild(modalSettingsBtn)
+    // Advance Settings Btn
+    const modalAdvanceSettingsBtn = document.createElement("div")
+    modalAdvanceSettingsBtn.setAttribute("class", "settings-btn")
+    modalAdvanceSettingsBtn.setAttribute("id", "advance-settings-btn")
+    modalAdvanceSettingsBtn.innerText = "Advance Settings"
+    modalAdvanceSettingsBtn.onclick = function () {
+      Sixteen.textModalClose()
+      Sixteen.loadAdvanceSettingsHomeContainer()
+    }
+    settingsBtnsDiv.appendChild(modalAdvanceSettingsBtn)
+    modalHeader.appendChild(modalCloseBtn)
+    modalHeader.appendChild(modalTitle)
+
+    modal.appendChild(modalHeader)
+    modal.appendChild(settingsBtnsDiv)
+
+    sixteenGui.appendChild(modal)
   }
 
   static loadAutoLightDefogContainer() {
@@ -534,13 +609,23 @@ class Sixteen {
       Sixteen.resetBtns()
       Sixteen.activateBtn(settings)
       Sixteen.clearSixteenHomeContainer()
-      Sixteen.loadSettingHomeContainer()
+      Sixteen.textModalActive()
     }
     navigation.appendChild(settings)
     Sixteen.insertHomeIconDiv()
     Sixteen.insertAimIconDiv()
     Sixteen.insertSettingsIconDiv()
     Sixteen.setDefaultSelectionBtn()
+  }
+
+  static textModalActive() {
+    const modal = document.getElementById("modal")
+    modal.classList.add("active")
+  }
+
+  static textModalClose() {
+    const modal = document.getElementById("modal")
+    modal.classList.remove("active")
   }
 
   static clearSixteenHomeContainer() {
@@ -1197,6 +1282,20 @@ class Sixteen {
   static selectedModalityDot(nextModality) {
     const modalityDots = document.getElementsByClassName("modality-dot-div")
     modalityDots[nextModality].classList.add("selected")
+  }
+
+  // Advance settings page
+  static loadAdvanceSettingsHomeContainer() {
+    const sixteenHomeContainer = document.getElementById(
+      "sixteen-home-container"
+    )
+    const advanceSettingHomeContainer = document.createElement("div")
+    advanceSettingHomeContainer.setAttribute("class", "setting-home-container")
+    advanceSettingHomeContainer.setAttribute(
+      "id",
+      "advance-setting-home-container"
+    )
+    sixteenHomeContainer.appendChild(advanceSettingHomeContainer)
   }
 
   // Setting page
