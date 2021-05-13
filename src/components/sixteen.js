@@ -838,9 +838,8 @@ class Sixteen {
   }
 
   static brightnessMinusSlide(n) {
-    const brightnessSettingDiv = document.getElementsByClassName(
-      "brightness-setting"
-    )
+    const brightnessSettingDiv =
+      document.getElementsByClassName("brightness-setting")
     let currentSettingIndex
     for (let item of brightnessSettingDiv) {
       if (Object.values(item.classList).includes("brightness-setting-show")) {
@@ -852,9 +851,8 @@ class Sixteen {
   }
 
   static brightnessPlusSlide(n) {
-    const brightnessSettingDiv = document.getElementsByClassName(
-      "brightness-setting"
-    )
+    const brightnessSettingDiv =
+      document.getElementsByClassName("brightness-setting")
     let currentSettingIndex
     for (let item of brightnessSettingDiv) {
       if (Object.values(item.classList).includes("brightness-setting-show")) {
@@ -866,9 +864,8 @@ class Sixteen {
   }
 
   static advanceBrightnessSetting(n, currentSettingIndex) {
-    const brightnessSettingsNameDivs = document.getElementsByClassName(
-      "brightness-setting"
-    )
+    const brightnessSettingsNameDivs =
+      document.getElementsByClassName("brightness-setting")
     // Conver divs to array
     const divsArray = Array.from(brightnessSettingsNameDivs)
     let nextSetting
@@ -1401,56 +1398,77 @@ class Sixteen {
   }
 
   static advancePlusSetting(n, settingName) {
-    const settingsSettingDiv = document.getElementsByClassName(
-      "settings-setting-value"
+    const settingSettingsDiv = document.getElementById(
+      `${settingName}-settings-setting`
     )
-    let currentSettingIndex
-    for (let item of settingsSettingDiv) {
-      if (Object.values(item.classList).includes("settings-setting-show")) {
-        if (`${settingName}-settings-setting` === item.id) {
-          console.log(settingName, item.id)
-          currentSettingIndex = parseInt(item.innerText - 1)
-          item.classList.remove("settings-setting-show")
-        }
+    const currentValue = parseInt(settingSettingsDiv.innerText)
+
+    if (settingName === "Brightness") {
+      if (currentValue === 8) {
+        settingSettingsDiv.innerText = 8
+        settingSettingsDiv.classList.add("settings-setting-show")
+      } else {
+        settingSettingsDiv.innerText = currentValue + n
+        settingSettingsDiv.classList.add("settings-setting-show")
       }
     }
-    Sixteen.advanceSettingsSetting(n, currentSettingIndex)
+
+    if (settingName === "Zoom") {
+      if (currentValue === 7) {
+        settingSettingsDiv.innerText = 7
+        settingSettingsDiv.classList.add("settings-setting-show")
+      } else {
+        settingSettingsDiv.innerText = currentValue + n
+        settingSettingsDiv.classList.add("settings-setting-show")
+      }
+    }
+
+    if (settingName === "Enhancement") {
+      if (currentValue === 8) {
+        settingSettingsDiv.innerText = 8
+        settingSettingsDiv.classList.add("settings-setting-show")
+      } else {
+        settingSettingsDiv.innerText = currentValue + n
+        settingSettingsDiv.classList.add("settings-setting-show")
+      }
+    }
   }
 
   static advanceMinusSetting(n, settingName) {
-    const settingsSettingDiv = document.getElementsByClassName(
-      "settings-setting-value"
+    console.log(n)
+    const settingSettingsDiv = document.getElementById(
+      `${settingName}-settings-setting`
     )
-    let currentSettingIndex
-    for (let item of settingsSettingDiv) {
-      if (Object.values(item.classList).includes("settings-setting-show")) {
-        if (`${settingName}-settings-setting` === item.id) {
-          console.log(settingName, item.id)
-          currentSettingIndex = parseInt(item.innerText - 1)
-          item.classList.remove("settings-setting-show")
-        }
+    const currentValue = parseInt(settingSettingsDiv.innerText)
+
+    if (settingName === "Brightness") {
+      if (currentValue === 1) {
+        settingSettingsDiv.innerText = 1
+        settingSettingsDiv.classList.add("settings-setting-show")
+      } else {
+        settingSettingsDiv.innerText = currentValue + n
+        settingSettingsDiv.classList.add("settings-setting-show")
       }
     }
-    Sixteen.advanceSettingsSetting(n, currentSettingIndex)
-  }
 
-  static advanceSettingsSetting(n, currentSettingIndex) {
-    const settingsSettingsNameDivs = document.getElementsByClassName(
-      "settings-setting-value"
-    )
-    // Conver divs to array
-    const divsArray = Array.from(settingsSettingsNameDivs)
-    let nextSetting
-    nextSetting = n + currentSettingIndex
-    console.log(divsArray[n])
-    // if (n + currentSettingIndex >= 10) {
-    //   nextSetting = 0
-    // } else if (n + currentSettingIndex < 0) {
-    //   nextSetting = 9
-    // } else {
-    //   nextSetting = n + currentSettingIndex
-    // }
+    if (settingName === "Zoom") {
+      if (currentValue === 1) {
+        settingSettingsDiv.innerText = 1
+        settingSettingsDiv.classList.add("settings-setting-show")
+      } else {
+        settingSettingsDiv.innerText = currentValue + n
+        settingSettingsDiv.classList.add("settings-setting-show")
+      }
+    }
 
-    divsArray[nextSetting].classList.add("settings-setting-show")
+    if (settingName === "Enhancement") {
+      if (currentValue === 1) {
+        settingSettingsDiv.innerText = 1
+        settingSettingsDiv.classList.add("settings-setting-show")
+      } else {
+        settingSettingsDiv.innerText = currentValue + n
+        settingSettingsDiv.classList.add("settings-setting-show")
+      }
+    }
   }
 }

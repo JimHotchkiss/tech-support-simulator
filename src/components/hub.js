@@ -15,18 +15,18 @@ class Hub {
     // HUB Map
     const hubMap = document.createElement("map")
     hubMap.setAttribute("name", "hubmap")
-    // HUB Map Area
-    const hubMapArea = document.createElement("area")
-    hubMapArea.setAttribute("shape", "rect")
-    hubMapArea.setAttribute("coords", "750, 428, 802, 776")
-    hubMapArea.onclick = function () {
+    // HUB Map Area Menu
+    const hubMapAreaMenu = document.createElement("area")
+    hubMapAreaMenu.setAttribute("shape", "rect")
+    hubMapAreaMenu.setAttribute("coords", "750, 428, 802, 776")
+    hubMapAreaMenu.onclick = function () {
       const changeHubImg = document.getElementById("hub-img")
       changeHubImg.getAttribute("src")
       console.log(changeHubImg.src)
       changeHubImg.setAttribute("src", "../../images/hub2.png")
     }
 
-    hubMap.appendChild(hubMapArea)
+    hubMap.appendChild(hubMapAreaMenu)
 
     Sixteen.guiSimulatorContainer().appendChild(hubImg)
     Sixteen.guiSimulatorContainer().appendChild(hubMap)
