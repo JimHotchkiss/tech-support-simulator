@@ -848,7 +848,7 @@
   .settings-btns-div {
       display: flex;
       justify-content: space-around;
-      margin-top: 15%;
+      margin-top: 20%;
   }
 
   .settings-btn {
@@ -878,14 +878,13 @@
 .advanced-settings-btns-div {
     height: 100%;
     width: 100%;
-    background: pink; 
 }
 
 .advanced-title-text{
     color: #fff;
     font-size: 42px;
     margin-left: auto;
-    margin-top: 8px;
+    margin-top: 16px;
 }
 
 .advanced-exit-btn {
@@ -896,4 +895,76 @@
     font-weight: bolder;
     color: #fff;
     cursor: pointer;
+}
+
+.advanced-settings-btns-div {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 85%;
+    max-height: 75%;
+    margin: auto;
+}
+
+.advanced-settings-btn-container {
+    cursor: pointer;
+    width: 200px;
+    height: 175px;
+    background: #424242;
+    margin: 20px 40px;
+}
+
+.advanced-settings-btn-img {
+   background: #fff;
+}
+
+#Button-btn-img {
+    margin: 16px auto;
+    width: 100px;
+    height: 100px;
+    background:  transparent url("../images/btn-img.png") 0% 0% no-repeat
+      padding-box;
+    background-size: 100px;
+}
+
+#Options-btn-img {
+    margin: 16px auto;
+    width: 100px;
+    height: 100px;
+    background:  transparent url("../images/wrench.png") 0% 0% no-repeat
+      padding-box;
+    background-size: 100px;
+}
+
+#Advanced-btn-img {
+    margin: 16px auto;
+    width: 100px;
+    height: 100px;
+    background:  transparent url("../images/advanced-settings.png") 0% 0% no-repeat
+      padding-box;
+    background-size: 100px;
+}
+
+#System-btn-img {
+    margin: 16px auto;
+    width: 100px;
+    height: 100px;
+    background:  transparent url("../images/system.png") 0% 0% no-repeat
+      padding-box;
+    background-size: 100px;
+}
+
+#Language-btn-img {
+    margin: 16px auto;
+    width: 100px;
+    height: 100px;
+    background:  transparent url("../images/language.png") 0% 0% no-repeat
+      padding-box;
+    background-size: 100px;
+}
+
+.advanced-settings-btn-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
 }

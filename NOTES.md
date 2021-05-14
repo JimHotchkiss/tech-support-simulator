@@ -291,6 +291,8 @@
     () Text modal for Advance Settings
         (x) Settings - short press
         (x) Advance Settings - long press
+        () Remove modal-close 
+
  [] Fix Gain and Brightness settings on SPY 
     () Gain - Settings don't cycle
     () Brightness - Settings don't cycle
@@ -302,6 +304,11 @@
         () Search window
  [] Advance Settings
     () Render div
+    () Render title div
+        () Render title
+        () Render exit
+    () Render btns div
+
  [] Text Modal 
     () Defog 
     () Autolight

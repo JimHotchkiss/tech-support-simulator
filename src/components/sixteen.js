@@ -23,6 +23,16 @@ class Sixteen {
     return [{ id: "gain" }, { id: "brightness" }]
   }
 
+  static advancedSettings() {
+    return [
+      { name: "Button Config" },
+      { name: "Options" },
+      { name: "Advanced Camera" },
+      { name: "System" },
+      { name: "Language" },
+    ]
+  }
+
   static modalities() {
     return ["Overlay", "Contrast", "ENV"]
   }
@@ -109,24 +119,6 @@ class Sixteen {
     const modal = document.createElement("div")
     modal.setAttribute("class", "modal")
     modal.setAttribute("id", "modal")
-    // Modal Header
-    const modalHeader = document.createElement("div")
-    modalHeader.setAttribute("class", "modal-header")
-    modalHeader.setAttribute("id", "modal-header")
-    // Modal title
-    const modalTitle = document.createElement("div")
-    modalTitle.setAttribute("class", "modal-title")
-    modalTitle.setAttribute("id", "modal-title")
-    // Modal close btn
-    const modalCloseBtn = document.createElement("div")
-    modalCloseBtn.setAttribute("class", "modal-close")
-    modalCloseBtn.setAttribute("id", "modal-close")
-    modalCloseBtn.innerHTML = "&times;"
-    modalCloseBtn.onclick = function () {
-      const modal = document.getElementById("modal")
-      modal.classList.remove("active")
-    }
-
     // Settings Btns Div
     const settingsBtnsDiv = document.createElement("div")
     settingsBtnsDiv.setAttribute("class", "settings-btns-div")
@@ -152,10 +144,6 @@ class Sixteen {
       Sixteen.loadAdvanceSettingsHomeContainer()
     }
     settingsBtnsDiv.appendChild(modalAdvanceSettingsBtn)
-    modalHeader.appendChild(modalCloseBtn)
-    modalHeader.appendChild(modalTitle)
-
-    modal.appendChild(modalHeader)
     modal.appendChild(settingsBtnsDiv)
 
     sixteenGui.appendChild(modal)
@@ -1317,6 +1305,36 @@ class Sixteen {
     )
     loadAdvancedSettingsBtnsDiv.setAttribute("id", "advanced-settings-btns-div")
     advanceSettingHomeContainer.appendChild(loadAdvancedSettingsBtnsDiv)
+    Sixteen.loadAdvancedSettingsBtns()
+  }
+
+  static loadAdvancedSettingsBtns() {
+    const advancedSettingsBtnsDiv = document.getElementById(
+      "advanced-settings-btns-div"
+    )
+    Sixteen.advancedSettings().map((setting) => {
+      const btnContainer = document.createElement("div")
+      btnContainer.setAttribute("class", "advanced-settings-btn-container")
+      btnContainer.setAttribute("id", `${setting.name}-btn-container`)
+      // Image
+      const btnImg = document.createElement("div")
+      btnImg.setAttribute("class", "advanced-settings-btn-img")
+      if (setting.name === "Button Config") {
+        btnImg.setAttribute("id", "Button-btn-img")
+      } else if (setting.name === "Advanced Camera") {
+        btnImg.setAttribute("id", "Advanced-btn-img")
+      } else {
+        btnImg.setAttribute("id", `${setting.name}-btn-img`)
+      }
+      // Text
+      const btnText = document.createElement("div")
+      btnText.setAttribute("class", "advanced-settings-btn-text")
+      btnText.setAttribute("id", `${setting.name}-btn-text`)
+      btnText.innerText = setting.name
+      btnContainer.appendChild(btnImg)
+      btnContainer.appendChild(btnText)
+      advancedSettingsBtnsDiv.appendChild(btnContainer)
+    })
   }
 
   static loadAdvancedSettingsTitleDiv() {
