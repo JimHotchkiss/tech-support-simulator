@@ -138,7 +138,7 @@ class Sixteen {
     const modalAdvanceSettingsBtn = document.createElement("div")
     modalAdvanceSettingsBtn.setAttribute("class", "settings-btn")
     modalAdvanceSettingsBtn.setAttribute("id", "advance-settings-btn")
-    modalAdvanceSettingsBtn.innerText = "Advance Settings"
+    modalAdvanceSettingsBtn.innerText = "Advanced Settings"
     modalAdvanceSettingsBtn.onclick = function () {
       Sixteen.textModalClose()
       Sixteen.loadAdvanceSettingsHomeContainer()
