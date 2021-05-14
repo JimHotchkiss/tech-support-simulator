@@ -10,6 +10,10 @@
     height: 100%;
 }
 
+.sixteen-navigation.advanced {
+    display: none;
+}
+
 /* Navigation Buttons*/
 .navigation-btns {
     width: 180px;
@@ -857,10 +861,39 @@
       border: 2px solid #0da9ff;
       color: #fff;
   }
-  
-  /* .modal-title h3 {
-    font-family: roboto;
-    font-size: 25px;
-    font-weight: 400;
+
+  /* Advanced Settings */
+
+  #advance-setting-home-container {
+      display: flex;
+      flex-direction: column;
+  }
+.advanced-settings-title-div{
+    display: flex;
+    height: 75px;
+    width: 100%;
+    background: #424242
+}
+
+.advanced-settings-btns-div {
+    height: 100%;
+    width: 100%;
+    background: pink; 
+}
+
+.advanced-title-text{
     color: #fff;
-  } */
+    font-size: 42px;
+    margin-left: auto;
+    margin-top: 8px;
+}
+
+.advanced-exit-btn {
+    margin-left: auto;
+    margin-right: 32px;
+    margin-top: 4px;
+    font-size: 48px;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+}

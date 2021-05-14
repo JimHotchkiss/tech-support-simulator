@@ -1296,6 +1296,72 @@ class Sixteen {
       "advance-setting-home-container"
     )
     sixteenHomeContainer.appendChild(advanceSettingHomeContainer)
+    Sixteen.hideNavigation()
+    Sixteen.loadAdvancedSettingsTitleDiv()
+    Sixteen.loadAdvancedSettingsBtnsDiv()
+  }
+
+  static hideNavigation() {
+    const sixteenNavigation = document.getElementById("sixteen-navigation")
+    sixteenNavigation.classList.add("advanced")
+  }
+
+  static loadAdvancedSettingsBtnsDiv() {
+    const advanceSettingHomeContainer = document.getElementById(
+      "advance-setting-home-container"
+    )
+    const loadAdvancedSettingsBtnsDiv = document.createElement("div")
+    loadAdvancedSettingsBtnsDiv.setAttribute(
+      "class",
+      "advanced-settings-btns-div"
+    )
+    loadAdvancedSettingsBtnsDiv.setAttribute("id", "advanced-settings-btns-div")
+    advanceSettingHomeContainer.appendChild(loadAdvancedSettingsBtnsDiv)
+  }
+
+  static loadAdvancedSettingsTitleDiv() {
+    const advanceSettingHomeContainer = document.getElementById(
+      "advance-setting-home-container"
+    )
+    const advancedSettingsTitleDiv = document.createElement("div")
+    advancedSettingsTitleDiv.setAttribute(
+      "class",
+      "advanced-settings-title-div"
+    )
+    advancedSettingsTitleDiv.setAttribute("id", "advanced-settings-title-div")
+    advanceSettingHomeContainer.appendChild(advancedSettingsTitleDiv)
+    Sixteen.advancedTitleText()
+    Sixteen.advancedExitBtn()
+  }
+
+  static advancedExitBtn() {
+    const advancedSettingsTitleDiv = document.getElementById(
+      "advanced-settings-title-div"
+    )
+    const advancedExitBtn = document.createElement("div")
+    advancedExitBtn.setAttribute("class", "advanced-exit-btn")
+    advancedExitBtn.innerHTML = "&times;"
+    advancedExitBtn.onclick = function () {
+      Sixteen.showNavigation()
+      Sixteen.clearSixteenHomeContainer()
+      Sixteen.textModalActive()
+    }
+    advancedSettingsTitleDiv.appendChild(advancedExitBtn)
+  }
+
+  static showNavigation() {
+    const sixteenNavigation = document.getElementById("sixteen-navigation")
+    sixteenNavigation.classList.remove("advanced")
+  }
+
+  static advancedTitleText() {
+    const advancedSettingsTitleDiv = document.getElementById(
+      "advanced-settings-title-div"
+    )
+    const advancedTitleText = document.createElement("div")
+    advancedTitleText.setAttribute("class", "advanced-title-text")
+    advancedTitleText.innerText = "Advanced Settings"
+    advancedSettingsTitleDiv.appendChild(advancedTitleText)
   }
 
   // Setting page

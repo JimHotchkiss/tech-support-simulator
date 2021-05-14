@@ -220,6 +220,7 @@
     [] Text Modal 
         () Defog 
         () Autolight
+
 # 5/7/2021
 () AIM
     (x) Autolight toggle
@@ -248,6 +249,7 @@
     [] Text Modal 
         () Defog 
         () Autolight
+
 # 5/12/2021
  [] Build settings adjustment functionality
  [] HUB
@@ -259,7 +261,32 @@
  [] Text Modal 
     () Defog 
     () Autolight
+
 # 5/13/2021
+ [] Advanced settings text modal
+    () Remove exit btn
+    () When you exit Advanced Settings, it defaults to Settings
+
+ [] Fix Gain and Brightness settings on SPY 
+    () Gain - Settings don't cycle
+    () Brightness - Settings don't cycle
+ [] HUB
+    (x) Add HUB btn to sidebar
+    (x) Render HUB homepage
+    () Functionality
+        (x) Areas clickable
+        () Search window
+ [] Advance Settings
+    (x) Render div
+    (x) Titls div
+    (x) Exit btn div
+    () Advanced Settings div
+    () Advanced Settings btns
+ [] Text Modal 
+    () Defog 
+    () Autolight
+
+# 5/14/2021
  [X] Build settings adjustment functionality
     () Text modal for Advance Settings
         (x) Settings - short press
