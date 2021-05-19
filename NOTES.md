@@ -314,5 +314,40 @@
     () Autolight
 
 
+# 5/19/2021
+ [] Build System page
+    (x) Header
+        (x) System back btn
+        (x) System previous page title
+        (x) System title
+        (x) System exit btn
+    () CCU Version
+    () FB Version 
+    () Temperature 
+    () Diagnostic Btn
+    () Reset System Default
+    () Black Balance
+ [] Fix Gain and Brightness settings on SPY 
+    () Gain - Settings don't cycle
+    () Brightness - Settings don't cycle
+ [] HUB
+    (x) Add HUB btn to sidebar
+    (x) Render HUB homepage
+    () Functionality
+        (x) Areas clickable
+        () Search window
+ [] Advance Settings
+    () Render div
+    () Render title div
+        () Render title
+        () Render exit
+    () Render btns div
+
+ [] Text Modal 
+    () Defog 
+    () Autolight
+
+
+
 
 

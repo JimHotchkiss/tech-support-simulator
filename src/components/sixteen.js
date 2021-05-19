@@ -33,6 +33,14 @@ class Sixteen {
     ]
   }
 
+  static system() {
+    return [
+      { name: "CCU Version", data: "4 0 18" },
+      { name: "FB Version", data: "0 5 40" },
+      { name: "Temperature", data: "33 C" },
+    ]
+  }
+
   static modalities() {
     return ["Overlay", "Contrast", "ENV"]
   }
@@ -1316,6 +1324,12 @@ class Sixteen {
       const btnContainer = document.createElement("div")
       btnContainer.setAttribute("class", "advanced-settings-btn-container")
       btnContainer.setAttribute("id", `${setting.name}-btn-container`)
+      btnContainer.onclick = function () {
+        Sixteen.clearSixteenHomeContainer()
+        if (setting.name === "System") {
+          Sixteen.loadSystemPage()
+        }
+      }
       // Image
       const btnImg = document.createElement("div")
       btnImg.setAttribute("class", "advanced-settings-btn-img")
@@ -1335,6 +1349,131 @@ class Sixteen {
       btnContainer.appendChild(btnText)
       advancedSettingsBtnsDiv.appendChild(btnContainer)
     })
+  }
+
+  // System page
+
+  static loadSystemPage() {
+    Sixteen.loadSystemHeader()
+    Sixteen.loadSystemMain()
+    // System Header
+    // Header back arrow
+    // Header previous page name
+    // Header current page name
+    // Header close icon
+  }
+
+  static loadSystemMain() {
+    const sixteenHomeContainer = document.getElementById(
+      "sixteen-home-container"
+    )
+    const systemMainContainer = document.createElement("div")
+    systemMainContainer.setAttribute("class", "system-main-container")
+    systemMainContainer.setAttribute("id", "system-main-container")
+    sixteenHomeContainer.appendChild(systemMainContainer)
+    Sixteen.loadSystemLeft(systemMainContainer)
+    Sixteen.loadSystemRight(systemMainContainer)
+  }
+
+  static loadSystemRight(systemMainContainer) {
+    const systemRight = document.createElement("div")
+    systemRight.setAttribute("class", "system-right")
+    systemMainContainer.appendChild(systemRight)
+    Sixteen.loadRightText(systemRight)
+  }
+
+  static loadRightText(systemRight) {
+    // Sixteen.system().map((item) => {
+    //   const itemDiv = document.createElement("div")
+    //   itemDiv.setAttribute("class", "system-item-div")
+    //   const itemText = document.createElement("div")
+    //   itemText.setAttribute("class", "system-item-text")
+    //   itemText.innerText = item.name
+    //   itemDiv.appendChild(itemText)
+    //   systemRight.appendChild(itemDiv)
+    // })
+  }
+
+  static loadSystemLeft(systemMainContainer) {
+    const systemLeft = document.createElement("div")
+    systemLeft.setAttribute("class", "system-left")
+    systemMainContainer.appendChild(systemLeft)
+    Sixteen.loadLeftText(systemLeft)
+  }
+
+  static loadLeftText(systemLeft) {
+    Sixteen.system().map((item) => {
+      const itemDiv = document.createElement("div")
+      itemDiv.setAttribute("class", "system-item-div")
+      const itemText = document.createElement("div")
+      itemText.setAttribute("class", "system-item-text")
+      itemText.innerText = `${item.name}:`
+      itemDiv.appendChild(itemText)
+      systemLeft.appendChild(itemDiv)
+    })
+    Sixteen.loadDiagnosticBtn(systemLeft)
+  }
+
+  static loadDiagnosticBtn(systemLeft) {
+    const diagnosticBtn = document.createElement("div")
+    diagnosticBtn.setAttribute("class", "diagnostic-div")
+    diagnosticBtn.setAttribute("id", "diagnostic-div")
+    diagnosticBtn.innerText = "Diagnostic"
+    systemLeft.appendChild(diagnosticBtn)
+  }
+
+  static loadSystemHeader() {
+    const sixteenHomeContainer = document.getElementById(
+      "sixteen-home-container"
+    )
+    const systemHeader = document.createElement("div")
+    systemHeader.setAttribute("class", "system-header")
+    systemHeader.setAttribute("id", "system-header")
+    sixteenHomeContainer.appendChild(systemHeader)
+    Sixteen.loadSystemBackBtn()
+  }
+
+  static loadSystemBackBtn() {
+    const systemHeader = document.getElementById("system-header")
+    const systemBackBtn = document.createElement("div")
+    systemBackBtn.setAttribute("class", "system-back-btn")
+    systemBackBtn.setAttribute("id", "system-back-btn")
+    systemBackBtn.onclick = function () {
+      Sixteen.clearSixteenHomeContainer()
+      Sixteen.loadAdvanceSettingsHomeContainer()
+    }
+    systemHeader.appendChild(systemBackBtn)
+    Sixteen.loadSystemPrevPageTitle(systemHeader)
+  }
+
+  static loadSystemPrevPageTitle(systemHeader) {
+    const systemPrevPageTitle = document.createElement("div")
+    systemPrevPageTitle.setAttribute("class", "system-prev-page-title")
+    systemPrevPageTitle.setAttribute("id", "system-prev-page-title")
+    systemPrevPageTitle.innerText = "Advanced Settings"
+    systemHeader.appendChild(systemPrevPageTitle)
+    Sixteen.loadSystemTitle(systemHeader)
+  }
+
+  static loadSystemTitle(systemHeader) {
+    const systemTitle = document.createElement("div")
+    systemTitle.setAttribute("class", "system-title")
+    systemTitle.setAttribute("id", "system-title")
+    systemTitle.innerText = "System"
+    systemHeader.appendChild(systemTitle)
+    Sixteen.loadSystemExitBtn(systemHeader)
+  }
+
+  static loadSystemExitBtn(systemHeader) {
+    const systemExitBtn = document.createElement("div")
+    systemExitBtn.setAttribute("class", "system-exit")
+    systemExitBtn.setAttribute("id", "system-exit")
+    systemExitBtn.onclick = function () {
+      Sixteen.clearSixteenHomeContainer()
+      Sixteen.loadAdvanceSettingsHomeContainer()
+    }
+    systemExitBtn.innerHTML = "&times;"
+    systemHeader.appendChild(systemExitBtn)
   }
 
   static loadAdvancedSettingsTitleDiv() {
