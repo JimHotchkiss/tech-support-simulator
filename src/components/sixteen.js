@@ -41,6 +41,10 @@ class Sixteen {
     ]
   }
 
+  static systemBtns() {
+    return [{ name: "Reset System Default" }, { name: "Black Balance" }]
+  }
+
   static modalities() {
     return ["Overlay", "Contrast", "ENV"]
   }
@@ -1328,6 +1332,8 @@ class Sixteen {
         Sixteen.clearSixteenHomeContainer()
         if (setting.name === "System") {
           Sixteen.loadSystemPage()
+        } else if (setting.name === "Language") {
+          Sixteen.loadLanguagePage()
         }
       }
       // Image
@@ -1351,8 +1357,80 @@ class Sixteen {
     })
   }
 
-  // System page
+  // Language page
+  static loadLanguagePage() {
+    Sixteen.loadLanguageHeader()
+    Sixteen.loadLanguageMain()
+  }
 
+  static loadLanguageMain() {
+    const sixteenHomeContainer = document.getElementById(
+      "sixteen-home-container"
+    )
+    const languageMainContainer = document.createElement("div")
+    languageMainContainer.setAttribute("class", "language-main-container")
+    languageMainContainer.setAttribute("id", "language-main-container")
+    sixteenHomeContainer.appendChild(languageMainContainer)
+    Sixteen.loadLanguageWindow(languageMainContainer)
+    Sixteen.loadLanguageFlag(languageMainContainer)
+  }
+
+  static loadLanguageWindow(languageMainContainer) {
+    const languageWindowDiv = document.createElement("div")
+    languageWindowDiv.setAttribute("class", "language-window-div")
+    languageMainContainer.appendChild(languageWindowDiv)
+  }
+
+  static loadLanguageFlag(languageMainContainer) {
+    const languageFlagDiv = document.createElement("div")
+    languageFlagDiv.setAttribute("class", "language-flag-div")
+    languageFlagDiv.setAttribute("id", "language-flag-div")
+    languageMainContainer.appendChild(languageFlagDiv)
+  }
+
+  static loadLanguageHeader() {
+    const sixteenHomeContainer = document.getElementById(
+      "sixteen-home-container"
+    )
+    const systemHeader = document.createElement("div")
+    systemHeader.setAttribute("class", "system-header")
+    systemHeader.setAttribute("id", "system-header")
+    sixteenHomeContainer.appendChild(systemHeader)
+    Sixteen.loadLanguageBackBtn()
+  }
+
+  static loadLanguageBackBtn() {
+    const systemHeader = document.getElementById("system-header")
+    const systemBackBtn = document.createElement("div")
+    systemBackBtn.setAttribute("class", "system-back-btn")
+    systemBackBtn.setAttribute("id", "system-back-btn")
+    systemBackBtn.onclick = function () {
+      Sixteen.clearSixteenHomeContainer()
+      Sixteen.loadAdvanceSettingsHomeContainer()
+    }
+    systemHeader.appendChild(systemBackBtn)
+    Sixteen.loadLanguagePrevPageTitle(systemHeader)
+  }
+
+  static loadLanguagePrevPageTitle(systemHeader) {
+    const systemPrevPageTitle = document.createElement("div")
+    systemPrevPageTitle.setAttribute("class", "system-prev-page-title")
+    systemPrevPageTitle.setAttribute("id", "system-prev-page-title")
+    systemPrevPageTitle.innerText = "Advanced Settings"
+    systemHeader.appendChild(systemPrevPageTitle)
+    Sixteen.loadLanguageTitle(systemHeader)
+  }
+
+  static loadLanguageTitle(systemHeader) {
+    const systemTitle = document.createElement("div")
+    systemTitle.setAttribute("class", "system-title")
+    systemTitle.setAttribute("id", "system-title")
+    systemTitle.innerText = "Language"
+    systemHeader.appendChild(systemTitle)
+    Sixteen.loadSystemExitBtn(systemHeader)
+  }
+
+  // System page
   static loadSystemPage() {
     Sixteen.loadSystemHeader()
     Sixteen.loadSystemMain()
@@ -1383,15 +1461,16 @@ class Sixteen {
   }
 
   static loadRightText(systemRight) {
-    // Sixteen.system().map((item) => {
-    //   const itemDiv = document.createElement("div")
-    //   itemDiv.setAttribute("class", "system-item-div")
-    //   const itemText = document.createElement("div")
-    //   itemText.setAttribute("class", "system-item-text")
-    //   itemText.innerText = item.name
-    //   itemDiv.appendChild(itemText)
-    //   systemRight.appendChild(itemDiv)
-    // })
+    Sixteen.systemBtns().map((btn) => {
+      const itemDiv = document.createElement("div")
+      itemDiv.setAttribute("class", "system-btn-div")
+      if (btn.name === "Reset System Default") {
+        console.log(btn.name)
+        itemDiv.setAttribute("id", "system-btn-default-div")
+      }
+      itemDiv.innerText = btn.name
+      systemRight.appendChild(itemDiv)
+    })
   }
 
   static loadSystemLeft(systemMainContainer) {
@@ -1407,7 +1486,7 @@ class Sixteen {
       itemDiv.setAttribute("class", "system-item-div")
       const itemText = document.createElement("div")
       itemText.setAttribute("class", "system-item-text")
-      itemText.innerText = `${item.name}:`
+      itemText.innerText = `${item.name}: ${item.data}`
       itemDiv.appendChild(itemText)
       systemLeft.appendChild(itemDiv)
     })
